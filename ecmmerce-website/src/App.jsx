@@ -1,13 +1,59 @@
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  useLocation
 } from 'react-router-dom';
 import Navbar from "./components/Navbar"
+import AdminNavbar from './components/adminNavbar';
+import UserNavbar from './components/userNavbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import Login from './pages/login';
-import Register from './pages/Register';
+import Home from './pages/publics/Home';
+// import Login from './services/login';
+import Register from './pages/users/Register';
+import AdminLogin from './pages/admin/adminLogin';
+import UserLogin from './pages/users/userLogin';
+import AdminDashboard from './pages/admin/adminDashboard';
+import AdminCategory from './pages/admin/adminCategory';
+
+function AppData() {
+
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+  const isUserRoute = location.pathname.startsWith('/user');
+
+  return (
+    <>
+
+      {isAdminRoute ? (
+        <AdminNavbar />
+      ) : isUserRoute ? (
+        <UserNavbar />
+      ) : (
+        <Navbar />
+      )}
+ 
+      <Routes>
+      {/* {=============== public ===================} */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<UserLogin />} />
+        <Route path="/register" element={<Register />} />
+        <Route path='/admin/login' element={<AdminLogin />} />
+
+        {/* {============= admin ===================== } */}
+        
+        <Route path='/admin/home' element={<AdminDashboard />}/>
+        <Route path='/admin/category' element={<AdminCategory />}/>
+        
+        
+
+      </Routes>
+
+       <Footer />
+
+    </>
+  )
+}
 
 
 function App() {
@@ -15,18 +61,14 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen">
-    
-    <Router>
-    <Navbar />
-     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-    </Routes>
 
-    <Footer/>
-    </Router>
+      <Router>
+          
+          <AppData/>
+        
+      </Router>
     </div>
+
   )
 }
 

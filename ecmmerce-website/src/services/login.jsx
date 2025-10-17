@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
-import api from '../assets/services/axios';
+import api from './axios';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 
-function Login() {
+function Login({ heading, apiEndPoint, apiDirection }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
 
@@ -15,6 +15,7 @@ function Login() {
   //    email : "",
   //    password : ""
   // })
+
   const navigate = useNavigate();
   const {
     register,
@@ -24,17 +25,20 @@ function Login() {
 
   const handleData = async (e) => {
     // e.preventDefault();
+
     setPasswordError('');
     setEmailError('');
     setSession('');
 
     try {
-      const response = await api.post('/login',
+      const response = await api.post(apiEndPoint,
         { email, password }
       )
       console.log(response);
       if (response.data.success) {
-        navigate('/home')
+        console.log("okkk");
+
+        navigate( apiDirection )
       }
       else if (response.data.message.includes('email')) {
         setEmailError(response.data.message);
@@ -64,10 +68,10 @@ function Login() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-[90vh] bg-[#e6edf3]">
+    <div className="flex justify-center items-center min-h-[100vh] bg-[#e6edf3]">
       <form onSubmit={handleSubmit(handleData)} className="bg-white p-8 rounded-lg shadow-md w-80">
-        <h2 className="text-2xl font-bold mb-6 text-center text-[#3d2a09ad]">
-          Login
+        <h2 className="text-2xl font-bold mb-6 text-center text-black">
+          {heading}
         </h2>
 
 
