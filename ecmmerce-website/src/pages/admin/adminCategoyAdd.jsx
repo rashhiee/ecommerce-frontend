@@ -24,7 +24,6 @@ const AdminCategoyAdd = () => {
     const handleData = async (e) => {
         e.preventDefault();
         try {
-
             const responce = await api.post('/admin/category', form)
             console.log(responce);
 

@@ -23,7 +23,7 @@ export const AdminNavbar = () => {
                     Dashboard
                 </Link>
                
-                <Link to="/product" className="hover:text-[#BFD8Eb]">
+                <Link to="/admin/products" className="hover:text-[#BFD8Eb]">
                     Products
                 </Link> 
 

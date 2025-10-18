@@ -17,6 +17,11 @@ import AdminDashboard from './pages/admin/adminDashboard';
 import AdminCategory from './pages/admin/adminCategory';
 import AdminCategoyAdd from './pages/admin/adminCategoyAdd';
 import AdminCategoryPut from './pages/admin/adminCategoryPut';
+import AdminProductsView from './pages/admin/adminProductsView';
+import AdminProductAdd from './pages/admin/adminProductAdd';
+import AdminProductEdit from './pages/admin/adminProductEdit';
+
+
 
 function AppData() {
 
@@ -48,7 +53,9 @@ function AppData() {
         <Route path='/admin/category' element={<AdminCategory />}/>
         <Route path='/admin/category/add' element={<AdminCategoyAdd />}/>
         <Route path='/admin/category/:id' element={<AdminCategoryPut />}/>
-        
+        <Route path='/admin/products' element={<AdminProductsView />}/>
+        <Route path='/admin/product/add' element={<AdminProductAdd />}/>
+        <Route path='/admin/product/:id' element={<AdminProductEdit/>}/>
         
 
       </Routes>

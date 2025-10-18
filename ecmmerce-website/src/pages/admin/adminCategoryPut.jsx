@@ -46,8 +46,15 @@ const AdminCategoryPut = () => {
             const responce = await api.put(`/admin/category/${id}`, form)
             console.log(responce);
             console.log("helloo");
+            if (responce.data.success) {
+                
+                alert(responce.data.message)
+            }else{
+                if (!responce.data.success) {
+                    alert(responce.data.message)
+                }
+            }
             
-            alert("category added successfully")
             navigate('/admin/category')
 
         } catch (error) {
