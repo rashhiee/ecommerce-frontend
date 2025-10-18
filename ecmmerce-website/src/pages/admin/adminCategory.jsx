@@ -1,22 +1,45 @@
-import React from "react";
+import React, { use } from "react";
 import { FaPlus } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import api from "../../services/axios";
+import { useNavigate } from "react-router-dom";
+
 
 const AdminCategory = () => {
+  const navigate = useNavigate();
 
   const [category, setCategory] = useState([])
+  const [render , setRender] = useState(false);
+  // console.log(category);
+  
 
   useEffect(() => {
     async function fetcData() {
 
-      const response = await api.get('/admin/category',)
+      const response = await api.get('/admin/category')
       console.log(response);
       setCategory(response.data)
     }
 
     fetcData()
-  }, [])
+  }, [render])
+
+    async function handleDelete (id)  {
+        
+        const dele = await api.delete(`/admin/category/${id}`)
+
+        console.log(dele);
+        
+        if (!dele.data.success) {
+           alert(dele.data.message)
+        }
+        else{
+          if (dele.data.success) {
+             alert(dele.data.message)
+             setRender(true)
+          }
+        }
+     }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 p-6 flex flex-col items-center">
@@ -28,6 +51,7 @@ const AdminCategory = () => {
           Categories
         </h1>
         <button
+          onClick={() => navigate('/admin/category/add')}
           className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all duration-300"
         >
           <FaPlus /> Add Category
@@ -56,11 +80,11 @@ const AdminCategory = () => {
                 >
                   <td className="px-6 py-4 text-gray-600">{index + 1}</td>
 
-                  <td className="px-6 py-4">
+                  <td className="px-1 py-1">
                     <img
                       src={cate.image || "https://via.placeholder.com/50"}
                       alt={cate.name}
-                      className="w-12 h-12 rounded-full object-cover"
+                      className="w-20 h-20 rounded "
                     />
                   </td>
 
@@ -69,10 +93,12 @@ const AdminCategory = () => {
                   <td className="px-6 py-4 text-gray-600">{cate.description}</td>
 
                   <td className="px-6 py-8 text-right flex items-center justify-end gap-3">
-                    <button className="text-white rounded-sm py-2 px-4 bg-blue-600 hover:bg-blue-700 transition-all">
+                    <button onClick={() => navigate(`/admin/category/${cate._id}`)} className="text-white rounded-sm py-2 px-4 bg-blue-600 hover:bg-blue-700 transition-all">
                       Edit
                     </button>
-                    <button className="text-white rounded-sm py-2 px-4 bg-red-600 hover:bg-red-700 transition-all">
+                    <button 
+                     onClick={()=>{handleDelete(cate._id)}}
+                     className="text-white rounded-sm py-2 px-4 bg-red-600 hover:bg-red-700 transition-all">
                       Delete
                     </button>
                   </td>

@@ -15,6 +15,8 @@ import AdminLogin from './pages/admin/adminLogin';
 import UserLogin from './pages/users/userLogin';
 import AdminDashboard from './pages/admin/adminDashboard';
 import AdminCategory from './pages/admin/adminCategory';
+import AdminCategoyAdd from './pages/admin/adminCategoyAdd';
+import AdminCategoryPut from './pages/admin/adminCategoryPut';
 
 function AppData() {
 
@@ -44,6 +46,8 @@ function AppData() {
         
         <Route path='/admin/home' element={<AdminDashboard />}/>
         <Route path='/admin/category' element={<AdminCategory />}/>
+        <Route path='/admin/category/add' element={<AdminCategoyAdd />}/>
+        <Route path='/admin/category/:id' element={<AdminCategoryPut />}/>
         
         
 

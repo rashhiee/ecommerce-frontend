@@ -19,7 +19,7 @@ export const AdminNavbar = () => {
 
             <div className='flex flex-row gap-8 w-[55%] justify-end'>
                 
-                <Link to="/product" className="hover:text-[#BFD8Eb]">
+                <Link to="/admin/home" className="hover:text-[#BFD8Eb]">
                     Dashboard
                 </Link>
                
@@ -27,7 +27,7 @@ export const AdminNavbar = () => {
                     Products
                 </Link> 
 
-                <Link to="/category" className="hover:text-[#BFD8Eb]">
+                <Link to="/admin/category" className="hover:text-[#BFD8Eb]">
                     Category
                 </Link>
                    <Link to="/product" className="hover:text-[#BFD8Eb]">
