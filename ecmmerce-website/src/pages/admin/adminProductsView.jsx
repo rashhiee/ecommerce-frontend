@@ -112,7 +112,7 @@ const AdminProductsView = () => {
                       )}
                     </td>
                     <td className="p-3 border-r font-medium text-gray-800">{p.name}</td>
-                    <td className="p-3 border-r font-medium text-gray-800">{p.price + " rs"}</td>
+                    <td className="p-3 border-r font-medium text-gray-800">{"₹"+p.price}</td>
                     <td className="p-3 border-r text-gray-600">{p.description}</td>
                     <td className="p-3 border-r text-gray-700">
                       {p.category?.name || "No category"}

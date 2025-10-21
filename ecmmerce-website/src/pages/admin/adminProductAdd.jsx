@@ -78,7 +78,7 @@ const AdminProductAdd = () => {
                     >
                         <FaArrowLeft className="mr-2" /> Back
                     </button>
-                    <h2 className="text-2xl font-bold text-gray-800">Add New Category</h2>
+                    <h2 className="text-2xl font-bold text-gray-800">Add New Product</h2>
                 </div>
 
                 <form onSubmit={handleData} className="space-y-5">
