@@ -45,8 +45,8 @@ const AdminProductAdd = () => {
             }
             else {
                 if (response.data.success) {
-                    alert(response.data.messsage)
-                    navigate('/admin/product')
+                    alert(response.data.message)
+                    navigate('/admin/products')
                 }
             }
 

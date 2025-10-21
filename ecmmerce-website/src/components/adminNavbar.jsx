@@ -7,10 +7,10 @@ import { useNavigate } from 'react-router-dom';
 export const AdminNavbar = () => {
     const navigate = useNavigate();
     return (
-        <nav className="w-full bg-[#ffffff]  px-6 py-3 flex items-center justify-between shadow-md">
+        <nav className="w-full bg-[#154c79]  px-6 py-3 flex items-center justify-between shadow-md">
             <div className=" font-mono flex justify-center items-center gap-6 w-[15%] ">
                 <Link to={"/"}>
-                    <h1 className='text-[#000000ad] text-[30px]'>
+                    <h1 className='text-[#00000] text-[30px]'>
                         SHOE BOX
                     </h1>
                 </Link>
@@ -30,13 +30,13 @@ export const AdminNavbar = () => {
                 <Link to="/admin/category" className="hover:text-[#BFD8Eb]">
                     Category
                 </Link>
-                   <Link to="/product" className="hover:text-[#BFD8Eb]">
+                <Link to="/admin/users" className="hover:text-[#BFD8Eb]">
+                    users
+                </Link>
+                   <Link to="/admin/orders" className="hover:text-[#BFD8Eb]">
                     orders
                 </Link>
 
-                <Link to="/category" className="hover:text-[#BFD8Eb]">
-                    users
-                </Link>
        
        
             </div>
@@ -47,7 +47,7 @@ export const AdminNavbar = () => {
 
                 <button
                     onClick={() => navigate('/logout')}
-                    className="bg-[#BFD8Eb] text-black px-5 py-1 rounded hover:bg-[#BFD8Eb]"
+                    className="bg-[#BFD8Eb] text-white px-5 py-1 rounded hover:bg-[#BFD8Eb]"
                 >
                     Logout
                 </button>

@@ -11,16 +11,43 @@ import { motion } from "framer-motion";
 const AdminProductsView = () => {
     const navigate = useNavigate();
     const [product, setProduct] = useState("");
+    const [render , setRender] = useState(false);
 
     useEffect(() => {
         async function getter() {
-            const responce = await api.get('/admin/product')
+          try {
+             const responce = await api.get('/admin/product')
             console.log(responce);
             setProduct(responce.data)
+          } catch (error) {
+            console.error(error)
+          }
+           
 
         }
         getter();
-    }, [])
+
+    }, [render]);
+
+    const handleDelete = async (id,e) => {
+      // e.preventDefault()
+      try {
+          console.log(id);
+      
+        const deleted = await api.delete(`/admin/product/${id}`);  
+        console.log(deleted);
+        
+        if (deleted.data.success) {
+           alert(deleted.data.message);
+           setRender(true);
+        }else{
+          alert(deleted.data.message)
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    
+    }
 
     return (
         <motion.div
@@ -29,7 +56,7 @@ const AdminProductsView = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {/* Header */}
+     
       <div className="w-full max-w-6xl flex justify-between items-center mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
           Product List
@@ -42,20 +69,21 @@ const AdminProductsView = () => {
         </button>
       </div>
 
-      {/* Table */}
+     
       <motion.div
         className="w-full max-w-6xl bg-white shadow-xl rounded-xl overflow-hidden border border-gray-200"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300">
+        <div className="overflow-x-auto ">
+          <table className="min-w-full bg-white border border-gray-300 ">
             <thead className="bg-gray-100 border-b text-gray-700">
               <tr>
                 <th className="p-3 text-left border-r font-semibold">No.</th>
                 <th className="p-3 text-left border-r font-semibold">Image</th>
                 <th className="p-3 text-left border-r font-semibold">Product Name</th>
+                <th className="p-3 text-left border-r font-semibold">Price</th>
                 <th className="p-3 text-left border-r font-semibold">Description</th>
                 <th className="p-3 text-left border-r font-semibold">Category</th>
                 <th className="p-3 text-left font-semibold">Action</th>
@@ -75,15 +103,16 @@ const AdminProductsView = () => {
                     <td className="p-3 border-r">
                       {p.image ? (
                         <img
-                          src={`http://localhost:3030${p.image}`}
+                          src={`http://localhost:3030/uploads/${p.image}`}
                           alt={p.name}
-                          className="w-24 h-[80px] rounded-lg  shadow-sm"
+                          className="w-24 h-24 rounded-lg  shadow-sm"
                         />
                       ) : (
                         <div className="text-gray-400 italic">No image</div>
                       )}
                     </td>
                     <td className="p-3 border-r font-medium text-gray-800">{p.name}</td>
+                    <td className="p-3 border-r font-medium text-gray-800">{p.price + " rs"}</td>
                     <td className="p-3 border-r text-gray-600">{p.description}</td>
                     <td className="p-3 border-r text-gray-700">
                       {p.category?.name || "No category"}
@@ -94,7 +123,9 @@ const AdminProductsView = () => {
                        className="bg-blue-500 text-white px-3 py-1.5 rounded hover:bg-blue-600 transition">
                         Edit
                       </button>
-                      <button className="bg-red-500 text-white px-3 py-1.5 rounded hover:bg-red-600 transition">
+                      <button 
+                       onClick={() => {handleDelete(p._id)}}
+                       className="bg-red-500 text-white px-3 py-1.5 rounded hover:bg-red-600 transition">
                         Delete
                       </button>
                     </td>
@@ -119,15 +150,3 @@ const AdminProductsView = () => {
 
 export default AdminProductsView
 
-// {
-//     p.image ? (
-//         <img
-//             src={p.image ? `http://localhost:3030${p.image}` : "https://via.placeholder.com/50"}
-//             alt={p.name}
-//             className="w-20 h-20 rounded"
-//         />
-
-//     ) : (
-//         "No image"
-//     )
-// }

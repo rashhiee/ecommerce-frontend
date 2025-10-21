@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#BFD8Eb] text-black py-6  shadow-inner flex flex-col items-center">
+    <footer className="bg-[#2b333a] text-white py-6  shadow-inner flex flex-col items-center">
 
   <h1 className="text-2xl font-bold mb-2">SHOE BOX</h1>
 

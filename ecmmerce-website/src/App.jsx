@@ -20,6 +20,9 @@ import AdminCategoryPut from './pages/admin/adminCategoryPut';
 import AdminProductsView from './pages/admin/adminProductsView';
 import AdminProductAdd from './pages/admin/adminProductAdd';
 import AdminProductEdit from './pages/admin/adminProductEdit';
+import AdminUsers from './pages/admin/adminUsers';
+import AdminOrders from './pages/admin/adminOrders';
+
 
 
 
@@ -47,7 +50,7 @@ function AppData() {
         <Route path="/register" element={<Register />} />
         <Route path='/admin/login' element={<AdminLogin />} />
 
-        {/* {============= admin ===================== } */}
+        {/* {============= admin ====================} */}
         
         <Route path='/admin/home' element={<AdminDashboard />}/>
         <Route path='/admin/category' element={<AdminCategory />}/>
@@ -55,8 +58,9 @@ function AppData() {
         <Route path='/admin/category/:id' element={<AdminCategoryPut />}/>
         <Route path='/admin/products' element={<AdminProductsView />}/>
         <Route path='/admin/product/add' element={<AdminProductAdd />}/>
-        <Route path='/admin/product/:id' element={<AdminProductEdit/>}/>
-        
+        <Route path='/admin/product/:id' element={<AdminProductEdit />}/>
+        <Route path='/admin/users' element={<AdminUsers />}/>
+        <Route path='/admin/orders' element={<AdminOrders />}/>  
 
       </Routes>
 

@@ -7,10 +7,10 @@ import { useNavigate } from 'react-router-dom';
 export const UserNavbar = () => {
     const navigate = useNavigate();
     return (
-        <nav className="w-full bg-[#ffffff]  px-6 py-3 flex items-center justify-between shadow-md">
+        <nav className="w-full bg-[#154c79]  px-6 py-3 flex items-center justify-between shadow-md">
             <div className=" font-mono flex justify-center items-center gap-6 w-[15%] ">
                 <Link to={"/"}>
-                    <h1 className='text-[#000000ad] text-[30px]'>
+                    <h1 className='text-[#00000] text-[30px]'>
                         SHOE BOX
                     </h1>
                 </Link>
@@ -24,13 +24,13 @@ export const UserNavbar = () => {
                 <Link to="/category" className="hover:text-[#BFD8Eb]">
                     Category
                 </Link>
-                <div className="flex items-center border border-black text-black w-[200px] h-[30px] px-2 rounded-[10px]">
-                    <FontAwesomeIcon icon={faSearch} className="text-black" />
-                    <div className="h-6 w-px bg-black mx-2" />
+                <div className="flex items-center border border-white text-white w-[200px] h-[30px] px-2 rounded-[10px]">
+                    <FontAwesomeIcon icon={faSearch} className="text-white" />
+                    <div className="h-6 w-px bg-white mx-2" />
                     <input
                         type="text"
                         placeholder="Search"
-                        className="bg-transparent text-black placeholder-gray outline-none flex-1"
+                        className="bg-transparent text-white placeholder-gray outline-none flex-1"
                     />
                 </div>
             </div>
@@ -47,7 +47,7 @@ export const UserNavbar = () => {
 
                 <button
                     onClick={() => navigate('/logout')}
-                    className="bg-[#BFD8Eb] text-black px-5 py-1 rounded hover:bg-[#BFD8Eb]"
+                    className="bg-[#BFD8Eb] text-white px-5 py-1 rounded hover:bg-[#BFD8Eb]"
                 >
                     Logout
                 </button>
