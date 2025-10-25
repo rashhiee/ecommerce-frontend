@@ -22,7 +22,7 @@ const HomePage = () => {
 
       await new Promise((resolve) => setTimeout(resolve, 500));
 
-      const res = await api.get(`/product/${category}`)
+      const res = await api.get(`/category/${category}`)
       setProducts(res.data || [])
       console.log(res.data);
 
@@ -37,6 +37,7 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchProducts(selectedCategory)
+      // window.scrollTo({ top: 0, behavior: "smooth" });
   }, [selectedCategory])
 
   const handleClick = (cat) => {
@@ -71,17 +72,25 @@ const HomePage = () => {
       </div>
 
       <div className='bg-white w-full h-auto p-12 flex justify-center'>
-        <div className='flex flex-col  items-center'>
-          <h1 className='font-bold p-1 text-2xl'>Discover the trending potentials</h1>
-          <h1 className=' pb-5 text-sm '>find the perfect piece for your comfort</h1>
-          <div className="w-[700px] mb-5 h-[50px] bg-white border border-black rounded-md flex items-center px-3 relative">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full h-full pr-10 outline-none text-gray-700 placeholder-gray-500"
-            />
-            <FaSearch className="absolute right-3 text-gray-500 cursor-pointer" />
-          </div>
+        <div className='flex flex-col gap-5  items-center'>
+          <h1 className='font-bold p-1 text-2xl'> Trending now </h1>
+           <div className="flex w-full gap-2 p-2 h-[500px]">
+        <img
+          src="/images/vans3.png.png"
+          alt="Image 1"
+          className="w-1/3 h-full "
+        />
+        <img
+          src="/images/vans4.png.png"
+          alt="Image 2"
+          className="w-1/3 h-full "
+        />
+        <img
+          src="/images/vans2.png.png"
+          alt="Image 3"
+          className="w-1/3 h-full "
+        />
+      </div>
 
 
           <div className='w-auto h-auto  px-6 bg-[#e8e2d9e1] rounded-[8px] flex justify-between items-center'>
@@ -111,17 +120,18 @@ const HomePage = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
               {products.slice(0, 8).map((p) => (
                 <div
+                  onClick={()=> navigate(`/product/${p._id}`)}
                   key={p._id}
                   className="bg-white shadow-md rounded-sm overflow-hidden hover:scale-105 transition"
                 >
                   <img
                     src={`http://localhost:3030/uploads/${p.image}`}
                     alt={p.name}
-                    className="w-full h-48 hover:object-cover"
+                    className="w-full h-[220px] object-bottom object-cover  "
                   />
-                  <div className="p-4 flex flex-col gap-2 items-center ">
+                  <div className="p-2 flex flex-col gap-2 items-center ">
                     <h3 className="text-lg font-semibold">{p.name}</h3>
-                    <p className="text-gray-700 hidden ">{p.description}</p>
+                    {/* <p className="text-gray-700 hidden ">{p.description}</p> */}
                     <p className="text-gray-700">₹{p.price}</p>
                   </div>
                 </div>
@@ -145,6 +155,8 @@ const HomePage = () => {
           </p>
         )}
       </div>
+    
+
     </div>
 
 

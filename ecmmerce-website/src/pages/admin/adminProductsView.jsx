@@ -51,7 +51,7 @@ const AdminProductsView = () => {
 
     return (
         <motion.div
-      className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 p-6 flex flex-col items-center"
+      className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 p-16 flex flex-col items-center"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}

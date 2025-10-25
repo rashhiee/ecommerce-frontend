@@ -82,7 +82,7 @@ const AdminCategory = () => {
 
                   <td className="px-1 py-1">
                     <img
-                      src={cate.image || "https://via.placeholder.com/50"}
+                       src={`http://localhost:3030/uploads/${cate.image}`}
                       alt={cate.name}
                       className="w-20 h-20 rounded "
                     />

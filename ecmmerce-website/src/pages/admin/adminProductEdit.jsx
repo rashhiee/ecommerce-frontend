@@ -15,6 +15,7 @@ const AdminProductEdit = () => {
     description: "",
     price: "",
     category: "",
+    size:[],
     image: ""
   })
 
@@ -24,7 +25,7 @@ const AdminProductEdit = () => {
 
   useEffect(() => {
     async function getter() {
-      
+
       console.log(" Fetching product from:", `/admin/products/${id}`);
       const response = await api.get(`/admin/product/${id}`)
       console.log("product", response);
@@ -37,6 +38,7 @@ const AdminProductEdit = () => {
         description: product.description || "",
         price: product.price || "",
         category: product.category?._id || product.category || "",
+        size: Array.isArray(product.size) ? product.size : [],
         image: product.image || "",
       });
       setPreview(product.image || "");
@@ -74,10 +76,11 @@ const AdminProductEdit = () => {
       formData.append('description', form.description);
       formData.append('price', form.price);
       formData.append('category', form.category);
+      form.size.forEach((s) => formData.append("size[]", s));
       formData.append('image', form.image)
 
 
-      
+
 
 
       const detail = await api.put(`/admin/product/${id}`, formData, {
@@ -174,6 +177,37 @@ const AdminProductEdit = () => {
 
 
             </select>
+          </div>
+
+          <div className='mb-4'>
+            <label className="block font-medium text-gray-700 mb-2">Available Sizes</label>
+            <div className='flex flex-wrap gap-3'>
+              {[6, 7, 8, 9, 10, 11].map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() =>
+                    setForm((prev) => ({
+                      ...prev,
+                      size: prev.size.includes(s)
+                        ? prev.size.filter((item) => item !== s)
+                        : [...prev.size, s],
+                    }))
+                  }
+                  className={`px-4 py-2 rounded-md border transition-all duration-300 ${form.size.includes(s)
+                    ? "bg-yellow-500 text-black border-yellow-600"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                    }`}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+            {form.size.length > 0 && (
+              <div className="mt-3 text-sm text-gray-600">
+                Selected sizes: {form.size.join(", ")}
+              </div>
+            )}
           </div>
 
           <div>

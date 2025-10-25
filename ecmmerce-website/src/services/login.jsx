@@ -76,8 +76,9 @@ function Login({ heading, apiEndPoint, apiDirection }) {
 
 
         <div className="mb-4">
-          <label className="block mb-2 font-semibold text-gray-700">Email</label>
+          <label htmlFor='email' className="block mb-2 font-semibold text-gray-700">Email</label>
           <input
+           name='email'
             {...register('email', {
               required: 'Email is required',
               pattern: {

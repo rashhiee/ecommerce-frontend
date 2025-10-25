@@ -32,6 +32,17 @@
   animation: slide-up 0.8s ease-in-out forwards;
 }
 
+/* Hide scrollbar but keep scrolling */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+
 
 /* @keyframes fade-in {
   from { opacity: 0; transform: translateY(10px); }

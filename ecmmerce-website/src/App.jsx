@@ -22,26 +22,34 @@ import AdminProductAdd from './pages/admin/adminProductAdd';
 import AdminProductEdit from './pages/admin/adminProductEdit';
 import AdminUsers from './pages/admin/adminUsers';
 import AdminOrders from './pages/admin/adminOrders';
-
-
+import Contact from './pages/publics/ContactPage';
+import ShopUser from './pages/publics/shopUser';
+import Proucts from './pages/publics/Proucts';
+import Cart from './pages/users/Cart';
+import ProtectedRoute from './components/ProtectedRoute';
+import Orders from './pages/users/Orders';
+import OrderSuccess from './pages/users/OrderDetails';
 
 
 function AppData() {
 
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
-  const isUserRoute = location.pathname.startsWith('/user');
+  // const isUserRoute = location.pathname.startsWith('/user');
+
+  const hideFooter = location.pathname === '/contact' || isAdminRoute;
+
 
   return (
     <>
 
       {isAdminRoute ? (
         <AdminNavbar />
-      ) : isUserRoute ? (
-        <UserNavbar />
-      ) : (
+      ) :  (
         <Navbar />
       )}
+
+
  
       <Routes>
       {/* {=============== public ===================} */}
@@ -49,7 +57,11 @@ function AppData() {
         <Route path="/login" element={<UserLogin />} />
         <Route path="/register" element={<Register />} />
         <Route path='/admin/login' element={<AdminLogin />} />
-
+        <Route path='/contact' element={<Contact />}/> 
+        <Route path='/shop' element={<ShopUser />}/> 
+        <Route path='/product/:id' element={<Proucts />}/>
+        <Route path='/logout' element={<></>}/>
+       
         {/* {============= admin ====================} */}
         
         <Route path='/admin/home' element={<AdminDashboard />}/>
@@ -60,11 +72,36 @@ function AppData() {
         <Route path='/admin/product/add' element={<AdminProductAdd />}/>
         <Route path='/admin/product/:id' element={<AdminProductEdit />}/>
         <Route path='/admin/users' element={<AdminUsers />}/>
-        <Route path='/admin/orders' element={<AdminOrders />}/>  
+        <Route path='/admin/orders' element={<AdminOrders />}/> 
+
+        {/* ============= user ========================= */}
+        
+        <Route path='/cart' element={
+          <ProtectedRoute>
+            <Cart/>
+          </ProtectedRoute>
+          
+        }/>
+
+         <Route path='/orders' element={
+          <ProtectedRoute>
+            <Orders />
+          </ProtectedRoute>
+          
+        }/>
+
+         <Route path='/order/details' element={
+          <ProtectedRoute>
+            <OrderSuccess />
+          </ProtectedRoute>
+          
+        }/>
+        
+
 
       </Routes>
 
-       <Footer />
+       {!hideFooter && <Footer />}
 
     </>
   )

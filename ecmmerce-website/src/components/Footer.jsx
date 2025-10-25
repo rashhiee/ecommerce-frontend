@@ -3,11 +3,11 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#1f262d] text-gray-300 transition-all duration-500 hover:py-12 py-8 mt-10">
+    <footer className="relative bg-[#f4f0eae1] text-[#484137e1] transition-all duration-500 hover:py-12 py-8 mt-10">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
         {/* Company Section */}
         <div>
-          <h2 className="text-2xl font-bold text-white mb-3">SHOE BOX</h2>
+          <h2 className="text-2xl font-bold text-black mb-3">SHOE BOX</h2>
           <p className="text-sm leading-relaxed">
             Your trusted destination for premium footwear.  
             Fast shipping, easy returns, and 24/7 customer care.
@@ -16,7 +16,7 @@ const Footer = () => {
 
         {/* Support Section */}
         <div>
-          <h3 className="text-lg font-semibold text-white mb-3">Support</h3>
+          <h3 className="text-lg font-semibold text-black mb-3">Support</h3>
           <ul className="space-y-2 text-sm">
             <li className="hover:text-white transition">FAQ</li>
             <li className="hover:text-white transition">Shipping & Returns</li>
@@ -27,7 +27,7 @@ const Footer = () => {
 
         {/* Newsletter Section */}
         <div>
-          <h3 className="text-lg font-semibold text-white mb-3">Newsletter</h3>
+          <h3 className="text-lg font-semibold text-black mb-3">Newsletter</h3>
           <p className="text-sm mb-3">
             Stay updated with new arrivals and exclusive offers.
           </p>
@@ -45,7 +45,7 @@ const Footer = () => {
 
         {/* Contact Section */}
         <div>
-          <h3 className="text-lg font-semibold text-white mb-3">Contact</h3>
+          <h3 className="text-lg font-semibold text-black mb-3">Contact</h3>
           <ul className="space-y-2 text-sm">
             <li className="flex items-center gap-2">
               <FaEnvelope className="text-yellow-500" /> support@shoebox.com

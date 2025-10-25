@@ -14,8 +14,11 @@ const AdminProductAdd = () => {
         description: "",
         price: "",
         category: "",
+        size: [],
         image: ""
     })
+
+    const allSizes = [6, 7, 8, 9, 10, 11];
 
     useEffect(() => {
         async function getter() {
@@ -34,6 +37,7 @@ const AdminProductAdd = () => {
             formData.append('description', form.description);
             formData.append('price', form.price);
             formData.append('category', form.category);
+            form.size.forEach((s) => formData.append("size[]", s));
             formData.append('image', form.image);
 
             const response = await api.post('/admin/product', formData, {
@@ -64,6 +68,18 @@ const AdminProductAdd = () => {
         } else {
             setForm({ ...form, [name]: value });
         }
+    };
+
+    const toggleSize = (size) => {
+        setForm((prev) => {
+            if (prev.size.includes(size)) {
+
+                return { ...prev, size: prev.size.filter((s) => s !== size) };
+            } else {
+
+                return { ...prev, size: [...prev.size, size] };
+            }
+        });
     };
 
 
@@ -137,7 +153,24 @@ const AdminProductAdd = () => {
 
                         </select>
                     </div>
-
+                    <div className="mb-4">
+                        <p className="text-gray-700 font-medium mb-2">Available Sizes</p>
+                        <div className="flex flex-wrap gap-2">
+                            {allSizes.map((size) => (
+                                <button
+                                    key={size}
+                                    type="button"
+                                    onClick={() => toggleSize(size)}
+                                    className={`px-3 py-1 rounded-full border text-sm font-medium transition ${form.size.includes(size)
+                                            ? "bg-yellow-500 text-white border-yellow-600"
+                                            : "bg-white text-gray-700 border-gray-300 hover:bg-yellow-100"
+                                        }`}
+                                >
+                                    {size}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
                     <div>
                         <label className="block text-gray-700 font-medium mb-2">Product Image</label>

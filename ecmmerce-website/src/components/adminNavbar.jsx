@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router-dom';
 export const AdminNavbar = () => {
     const navigate = useNavigate();
     return (
-        <nav className="w-full bg-[#154c79]  px-6 py-3 flex items-center justify-between shadow-md">
+        <nav className="w-full bg-[#f1f1f2]  px-6 py-3 flex items-center justify-between shadow-md">
             <div className=" font-mono flex justify-center items-center gap-6 w-[15%] ">
                 <Link to={"/"}>
                     <h1 className='text-[#00000] text-[30px]'>
-                        SHOE BOX
+                        SB
                     </h1>
                 </Link>
 
