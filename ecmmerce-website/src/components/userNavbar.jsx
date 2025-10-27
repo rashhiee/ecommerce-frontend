@@ -1,61 +1,61 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch,  faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+// import React from 'react'
+// import { Link } from 'react-router-dom'
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSearch,  faAngleDown } from '@fortawesome/free-solid-svg-icons';
+// import { useNavigate } from 'react-router-dom';
 
-export const UserNavbar = () => {
-    const navigate = useNavigate();
-    return (
-        <nav className="w-full bg-[#154c79]  px-6 py-3 flex items-center justify-between shadow-md">
-            <div className=" font-mono flex justify-center items-center gap-6 w-[15%] ">
-                <Link to={"/"}>
-                    <h1 className='text-[#00000] text-[30px]'>
-                        SHOE BOX
-                    </h1>
-                </Link>
+// export const UserNavbar = () => {
+//     const navigate = useNavigate();
+//     return (
+//         <nav className="w-full bg-[#154c79]  px-6 py-3 flex items-center justify-between shadow-md">
+//             <div className=" font-mono flex justify-center items-center gap-6 w-[15%] ">
+//                 <Link to={"/"}>
+//                     <h1 className='text-[#00000] text-[30px]'>
+//                         SHOE BOX
+//                     </h1>
+//                 </Link>
 
-            </div>
+//             </div>
 
-            <div className='flex flex-row gap-8 w-[55%] justify-end'>
-                <Link to="/product" className="hover:text-[#BFD8Eb]">
-                    Products
-                </Link>
-                <Link to="/category" className="hover:text-[#BFD8Eb]">
-                    Category
-                </Link>
-                <div className="flex items-center border border-white text-white w-[200px] h-[30px] px-2 rounded-[10px]">
-                    <FontAwesomeIcon icon={faSearch} className="text-white" />
-                    <div className="h-6 w-px bg-white mx-2" />
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        className="bg-transparent text-white placeholder-gray outline-none flex-1"
-                    />
-                </div>
-            </div>
-
-
-
-            <div className="flex justify-end items-center gap-6 w-[30%] mr-10 ">
-                <Link to="/help" className="hover:text-[#BFD8Eb]">
-                    Help
-                    <FontAwesomeIcon icon={faAngleDown} size="sm" />
-
-                </Link>
+//             <div className='flex flex-row gap-8 w-[55%] justify-end'>
+//                 <Link to="/product" className="hover:text-[#BFD8Eb]">
+//                     Products
+//                 </Link>
+//                 <Link to="/category" className="hover:text-[#BFD8Eb]">
+//                     Category
+//                 </Link>
+//                 <div className="flex items-center border border-white text-white w-[200px] h-[30px] px-2 rounded-[10px]">
+//                     <FontAwesomeIcon icon={faSearch} className="text-white" />
+//                     <div className="h-6 w-px bg-white mx-2" />
+//                     <input
+//                         type="text"
+//                         placeholder="Search"
+//                         className="bg-transparent text-white placeholder-gray outline-none flex-1"
+//                     />
+//                 </div>
+//             </div>
 
 
-                <button
-                    onClick={() => navigate('/logout')}
-                    className="bg-[#BFD8Eb] text-white px-5 py-1 rounded hover:bg-[#BFD8Eb]"
-                >
-                    Logout
-                </button>
+
+//             <div className="flex justify-end items-center gap-6 w-[30%] mr-10 ">
+//                 <Link to="/help" className="hover:text-[#BFD8Eb]">
+//                     Help
+//                     <FontAwesomeIcon icon={faAngleDown} size="sm" />
+
+//                 </Link>
+
+
+//                 <button
+//                     onClick={() => navigate('/logout')}
+//                     className="bg-[#BFD8Eb] text-white px-5 py-1 rounded hover:bg-[#BFD8Eb]"
+//                 >
+//                     Logout
+//                 </button>
             
-            </div>
+//             </div>
 
-        </nav>
-    )
-}
+//         </nav>
+//     )
+// }
 
-export default UserNavbar
+// export default UserNavbar

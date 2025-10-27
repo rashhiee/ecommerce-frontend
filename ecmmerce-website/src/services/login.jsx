@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import api from './axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
+import { FaArrowLeft } from 'react-icons/fa'
+
+
 
 function Login({ heading, apiEndPoint, apiDirection }) {
+   
+  useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+  },[])
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
 
@@ -37,18 +45,22 @@ function Login({ heading, apiEndPoint, apiDirection }) {
       console.log(response);
       if (response.data.success) {
         console.log("okkk");
+         localStorage.setItem("isAuth", "true");
+         navigate(apiDirection)
+           window.location.reload();
 
-        navigate( apiDirection )
       }
       else if (response.data.message.includes('email')) {
         setEmailError(response.data.message);
-        console.log(response.data);
+        console.log(response.data.message);
       }
       else if (response.data.message.includes('password')) {
         setPasswordError(response.data.message)
+        console.log("erroree", response.data.message);
+
       }
       else {
-        if (response.data.message.includes('users')) {
+        if (response.data.message.includes('page')) {
           setSession(response.data.message)
         }
       }
@@ -68,17 +80,26 @@ function Login({ heading, apiEndPoint, apiDirection }) {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-[100vh] bg-[#e6edf3]">
-      <form onSubmit={handleSubmit(handleData)} className="bg-white p-8 rounded-lg shadow-md w-80">
+    <div className="flex pt-12 justify-center items-center min-h-[100vh] bg-[#e6edf3] relative ">
+       
+      <button
+                onClick={() => navigate('/')}
+                type="button"
+                className=" absolute top-[100px] left-10 flex items-center text-gray-600 hover:text-blue-600 transition"
+              >
+                <FaArrowLeft className="mr-2" /> Back
+              </button>
+
+      <form onSubmit={handleSubmit(handleData)} className="bg-white p-5 rounded-lg shadow-lg w-120  ">
         <h2 className="text-2xl font-bold mb-6 text-center text-black">
           {heading}
         </h2>
 
 
-        <div className="mb-4">
-          <label htmlFor='email' className="block mb-2 font-semibold text-gray-700">Email</label>
+        <div className="mb-8 ">
+          <label htmlFor='email' className="block mb-2 font-semibold text-gray-500 text-sm">Email</label>
           <input
-           name='email'
+            name='email'
             {...register('email', {
               required: 'Email is required',
               pattern: {
@@ -89,7 +110,7 @@ function Login({ heading, apiEndPoint, apiDirection }) {
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Enter your email"
-            className="w-full border border-gray-300 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-[#BFD8Eb]"
+            className="w-full border border-gray-300 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-[#2b333a]"
           />
           {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
           {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
@@ -98,8 +119,8 @@ function Login({ heading, apiEndPoint, apiDirection }) {
         </div>
 
 
-        <div className="mb-4">
-          <label className="block mb-2 font-semibold text-gray-700">Password</label>
+        <div className="mb-8">
+          <label className="block mb-2 font-semibold text-gray-500 text-sm">Password</label>
           <input
             {...register('password', {
               required: 'Password is required',
@@ -112,7 +133,7 @@ function Login({ heading, apiEndPoint, apiDirection }) {
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Enter your password"
-            className="w-full border border-gray-300 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-[#BFD8Eb]"
+            className="w-full border border-gray-300 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-[#2b333a]"
           />
           <p className='text-red-600'>{passwordError}</p>
           {errors.password && <p className='text-red-600'>{errors.password.message}</p>}
@@ -127,10 +148,15 @@ function Login({ heading, apiEndPoint, apiDirection }) {
             className="w-full border border-gray-300 rounded px-3 py-2 outline-none focus:ring-2 focus:ring-yellow-400"
           />
         </div> */}
+        <div className='flex flex-col gap-5 items-center'>
+          <button onClick={handleData} className="w-full bg-[#2b333a] text-white py-2 rounded hover:bg-[#314554] font-semibold">
+            Submit
+          </button>
 
-        <button onClick={handleData} className="w-full bg-[#BFD8Eb] text-black py-2 rounded hover:bg-[#a8cde8] font-semibold">
-          Submit
-        </button>
+          <Link className='text-gray-500 text-sm underline hover:text-black ' to='/register'>singup?</Link>
+
+        </div>
+
       </form>
     </div>
   );

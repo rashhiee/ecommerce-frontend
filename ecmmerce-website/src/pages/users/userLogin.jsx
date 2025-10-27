@@ -10,7 +10,7 @@ const UserLogin = () => {
             <Login
                 heading='Login'
                 apiEndPoint='/login'
-                apiDirection= '/home'
+                apiDirection= '/'
             />
         </div>
     )

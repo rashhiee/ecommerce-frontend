@@ -18,7 +18,7 @@ const ShopUser = () => {
                 console.log(responce.data);
                 setProducts(responce.data)
                 setFilteredProducts(responce.data)
-                  window.scrollTo({ top: 0, behavior: "smooth" });
+                window.scrollTo({ top: 0, behavior: "smooth" });
 
             } catch (error) {
                 setError(true)
@@ -126,7 +126,9 @@ const ShopUser = () => {
                                     <img
                                         src={product.imageUrl || `http://localhost:3030/uploads/${product.image}`}
                                         alt={product.name}
-                                        className="w-full h-[220px] object-bottom object-cover"
+                                        className={`w-full h-[220px] object-cover ${product.category ==
+                                            "68f76822441ca1795000f0d2" ? "object-bottom" : "object-center"
+                                            }`}
                                     />
                                     <div className="p-2 flex flex-col  ">
                                         <h3 className="text-md font-semibold text-gray-800 truncate">{product.name}</h3>

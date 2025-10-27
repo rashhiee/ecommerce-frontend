@@ -20,19 +20,19 @@ const Contact = () => {
             <div className="flex items-start gap-3">
               <FaMapMarkerAlt className="text-yellow-500 text-xl mt-1" />
               <p>
-                123 Shoe Street,<br />
+                Muttam ,kalamassery,<br />
                 Kochi, Kerala, India
               </p>
             </div>
 
             <div className="flex items-center gap-3">
               <FaPhone className="text-yellow-500 text-xl" />
-              <p>+91 98765 43210</p>
+              <p>+91 9048543681</p>
             </div>
 
             <div className="flex items-center gap-3">
               <FaEnvelope className="text-yellow-500 text-xl" />
-              <p>support@shoebox.com</p>
+              <p>rashiee973@gmail.com</p>
             </div>
 
             <div className="mt-6">

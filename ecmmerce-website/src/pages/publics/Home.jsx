@@ -24,7 +24,7 @@ const HomePage = () => {
 
       const res = await api.get(`/category/${category}`)
       setProducts(res.data || [])
-      console.log(res.data);
+      console.log("products",res.data);
 
     } catch (err) {
       console.error(err)
@@ -37,7 +37,7 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchProducts(selectedCategory)
-      // window.scrollTo({ top: 0, behavior: "smooth" });
+    // window.scrollTo({ top: 0, behavior: "smooth" });
   }, [selectedCategory])
 
   const handleClick = (cat) => {
@@ -50,9 +50,9 @@ const HomePage = () => {
 
 
   return (
-    <div className='w-full h-auto'>
+    <div className='w-full h-auto '>
       <div
-        className="relative mt-[68px] w-full h-screen bg-cover bg-center bg-no-repeat"
+        className="relative mt-[66px] w-full h-screen bg-cover bg-center bg-no-repeat"
 
         style={{ backgroundImage: "url('/images/mainpage.webp')" }}
       >
@@ -74,26 +74,26 @@ const HomePage = () => {
       <div className='bg-white w-full h-auto p-12 flex justify-center'>
         <div className='flex flex-col gap-5  items-center'>
           <h1 className='font-bold p-1 text-2xl'> Trending now </h1>
-           <div className="flex w-full gap-2 p-2 h-[500px]">
-        <img
-          src="/images/vans3.png.png"
-          alt="Image 1"
-          className="w-1/3 h-full "
-        />
-        <img
-          src="/images/vans4.png.png"
-          alt="Image 2"
-          className="w-1/3 h-full "
-        />
-        <img
-          src="/images/vans2.png.png"
-          alt="Image 3"
-          className="w-1/3 h-full "
-        />
-      </div>
+          <div className="flex w-full gap-2 p-2 h-[500px]">
+            <img
+              src="/images/vans3.png.png"
+              alt="Image 1"
+              className="w-1/3 h-full "
+            />
+            <img
+              src="/images/vans4.png.png"
+              alt="Image 2"
+              className="w-1/3 h-full "
+            />
+            <img
+              src="/images/vans2.png.png"
+              alt="Image 3"
+              className="w-1/3 h-full "
+            />
+          </div>
 
 
-          <div className='w-auto h-auto  px-6 bg-[#e8e2d9e1] rounded-[8px] flex justify-between items-center'>
+          <div className='w-auto h-auto   px-6 bg-[#e8e2d9e1] rounded-[8px] flex justify-between items-center'>
             {['men', 'women', 'kids'].map((cat) => (
               <div
                 key={cat}
@@ -120,14 +120,15 @@ const HomePage = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
               {products.slice(0, 8).map((p) => (
                 <div
-                  onClick={()=> navigate(`/product/${p._id}`)}
+                  onClick={() => navigate(`/product/${p._id}`)}
                   key={p._id}
                   className="bg-white shadow-md rounded-sm overflow-hidden hover:scale-105 transition"
                 >
                   <img
                     src={`http://localhost:3030/uploads/${p.image}`}
                     alt={p.name}
-                    className="w-full h-[220px] object-bottom object-cover  "
+                    className={`w-full h-[220px] object-cover ${p.category.name == "men" ? "object-bottom" : "object-center"
+                      }`}
                   />
                   <div className="p-2 flex flex-col gap-2 items-center ">
                     <h3 className="text-lg font-semibold">{p.name}</h3>
@@ -155,7 +156,15 @@ const HomePage = () => {
           </p>
         )}
       </div>
-    
+
+      <div className='bg-black w-full py-5 flex gap-5 justify-center items-center text-white mt-10'>
+
+        <p>Be the first to know about new arrivals</p>
+        <button
+          onClick={() => navigate('/register')}
+          className='px-5 py-4 bg-red-600 font-mono rounded-md'>Signup</button>
+
+      </div>
 
     </div>
 

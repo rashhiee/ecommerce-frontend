@@ -1,5 +1,5 @@
 import React, { use } from "react";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus , FaArrowLeft} from "react-icons/fa";
 import { useState, useEffect } from "react";
 import api from "../../services/axios";
 import { useNavigate } from "react-router-dom";
@@ -9,9 +9,9 @@ const AdminCategory = () => {
   const navigate = useNavigate();
 
   const [category, setCategory] = useState([])
-  const [render , setRender] = useState(false);
+  const [render, setRender] = useState(false);
   // console.log(category);
-  
+
 
   useEffect(() => {
     async function fetcData() {
@@ -24,22 +24,22 @@ const AdminCategory = () => {
     fetcData()
   }, [render])
 
-    async function handleDelete (id)  {
-        
-        const dele = await api.delete(`/admin/category/${id}`)
+  async function handleDelete(id) {
 
-        console.log(dele);
-        
-        if (!dele.data.success) {
-           alert(dele.data.message)
-        }
-        else{
-          if (dele.data.success) {
-             alert(dele.data.message)
-             setRender(true)
-          }
-        }
-     }
+    const dele = await api.delete(`/admin/category/${id}`)
+
+    console.log(dele);
+
+    if (!dele.data.success) {
+      alert(dele.data.message)
+    }
+    else {
+      if (dele.data.success) {
+        alert(dele.data.message)
+        setRender(true)
+      }
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 p-6 flex flex-col items-center">
@@ -50,12 +50,22 @@ const AdminCategory = () => {
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
           Categories
         </h1>
+        <div className="flex gap-10">
+
+        <button
+          onClick={() => navigate('/admin/home')}
+          type="button"
+          className="flex items-center text-gray-600 hover:text-blue-600 transition"
+        >
+          <FaArrowLeft className="mr-2" /> Back
+        </button>
         <button
           onClick={() => navigate('/admin/category/add')}
           className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all duration-300"
         >
           <FaPlus /> Add Category
         </button>
+        </div>
       </div>
 
       {/* Table */}
@@ -82,7 +92,7 @@ const AdminCategory = () => {
 
                   <td className="px-1 py-1">
                     <img
-                       src={`http://localhost:3030/uploads/${cate.image}`}
+                      src={`http://localhost:3030/uploads/${cate.image}`}
                       alt={cate.name}
                       className="w-20 h-20 rounded "
                     />
@@ -96,9 +106,9 @@ const AdminCategory = () => {
                     <button onClick={() => navigate(`/admin/category/${cate._id}`)} className="text-white rounded-sm py-2 px-4 bg-blue-600 hover:bg-blue-700 transition-all">
                       Edit
                     </button>
-                    <button 
-                     onClick={()=>{handleDelete(cate._id)}}
-                     className="text-white rounded-sm py-2 px-4 bg-red-600 hover:bg-red-700 transition-all">
+                    <button
+                      onClick={() => { handleDelete(cate._id) }}
+                      className="text-white rounded-sm py-2 px-4 bg-red-600 hover:bg-red-700 transition-all">
                       Delete
                     </button>
                   </td>

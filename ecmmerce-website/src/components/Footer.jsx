@@ -3,9 +3,9 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#f4f0eae1] text-[#484137e1] transition-all duration-500 hover:py-12 py-8 mt-10">
+    <footer className="relative bg-[#f4f0eae1] text-[#484137e1] transition-all duration-500 hover:py-12 py-8 ">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
-        {/* Company Section */}
+       
         <div>
           <h2 className="text-2xl font-bold text-black mb-3">SHOE BOX</h2>
           <p className="text-sm leading-relaxed">
@@ -14,7 +14,7 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Support Section */}
+     
         <div>
           <h3 className="text-lg font-semibold text-black mb-3">Support</h3>
           <ul className="space-y-2 text-sm">
@@ -25,7 +25,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Newsletter Section */}
+      
         <div>
           <h3 className="text-lg font-semibold text-black mb-3">Newsletter</h3>
           <p className="text-sm mb-3">
@@ -43,27 +43,26 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Contact Section */}
+        
         <div>
           <h3 className="text-lg font-semibold text-black mb-3">Contact</h3>
           <ul className="space-y-2 text-sm">
             <li className="flex items-center gap-2">
-              <FaEnvelope className="text-yellow-500" /> support@shoebox.com
+              <FaEnvelope className="text-yellow-500" /> rashiee973@gmail.com
             </li>
             <li className="flex items-center gap-2">
-              <FaPhone className="text-yellow-500" /> +91 98765 43210
+              <FaPhone className="text-yellow-500" /> +91 9048543681
             </li>
             <li className="flex items-start gap-2">
               <FaMapMarkerAlt className="text-yellow-500 mt-1" /> 
               <span>
-                123 Shoe Street, Kochi,<br /> Kerala, India
+                 kalamassery , Kochi,<br /> Kerala, India
               </span>
             </li>
           </ul>
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-400">
         &copy; {new Date().getFullYear()} SHOE BOX. All Rights Reserved.
       </div>

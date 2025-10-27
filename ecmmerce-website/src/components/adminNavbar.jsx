@@ -3,9 +3,17 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch,  faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import api from '../services/axios';
+
 
 export const AdminNavbar = () => {
     const navigate = useNavigate();
+    
+       async function handleLogout() {
+     const res = await api.post('/logout')
+     alert(res.data.message)
+     navigate('/admin/login')
+  }
     return (
         <nav className="w-full bg-[#f1f1f2]  px-6 py-3 flex items-center justify-between shadow-md">
             <div className=" font-mono flex justify-center items-center gap-6 w-[15%] ">
@@ -46,8 +54,8 @@ export const AdminNavbar = () => {
             <div className="flex justify-end items-center gap-6 w-[30%] mr-10 ">
 
                 <button
-                    onClick={() => navigate('/logout')}
-                    className="bg-[#BFD8Eb] text-white px-5 py-1 rounded hover:bg-[#BFD8Eb]"
+                    onClick={handleLogout}
+                    className=" text-black border-2 rounded-lg px-5 py-1 border-gray-600 hover:bg-[#e3d788]"
                 >
                     Logout
                 </button>
