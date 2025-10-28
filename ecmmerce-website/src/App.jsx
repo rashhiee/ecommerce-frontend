@@ -69,6 +69,10 @@ function AppData() {
        
         <Route path='/admin/login' element={<AdminLogin />} />
 
+        {/* <Route path='/dd' element={<></>}>
+          <Route path='/shop' element={<>hii</>}/>
+        </Route> */}
+
 
          <Route path='/admin/*' element={
           <ProtectedRoute role='admin'>

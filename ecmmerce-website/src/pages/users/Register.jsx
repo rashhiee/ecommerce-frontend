@@ -39,7 +39,7 @@ function Register() {
       );
       console.log(response);
       if (response.data.success) {
-        navigate("/home")
+        navigate("/")
       } else if (response.data.message.includes('email')) {
         setEmailError(response.data.message)
       } else if (response.data.message.includes('password')) {

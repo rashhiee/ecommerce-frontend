@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import api from '../../services/axios';
 import { FaHeart } from 'react-icons/fa';
+import { CartContext } from '../../components/ContextCart';
 
 
 const Proucts = () => {
 
+    const {increment} = useContext(CartContext)
 
     const { id } = useParams();
     const [product, setProduct] = useState(null);
@@ -14,6 +16,7 @@ const Proucts = () => {
     const [error, setError] = useState('');
     const [catProducts, setCatProducts] = useState([]);
     const navigate = useNavigate();
+    const [auth,setAuth] = useState(false);
 
 
 
@@ -23,12 +26,12 @@ const Proucts = () => {
             try {
 
                 const response = await api.get(`/product/${id}`)
-                console.log(response.data);
+                // console.log(response.data);
                 if (!response.data || response.data === "product not found") {
                     setError('Product not found');
                 } else {
                     setProduct(response.data);
-                    console.log(response.data);
+                    // console.log(response.data);
                     const prod = response.data;
 
                     if (prod?.category?.name) {
@@ -61,10 +64,41 @@ const Proucts = () => {
     }, [id])
 
     const handleCart = async (id) => {
-        console.log("hii");
+        // console.log("hii");
+      async function getter() {
+        try {
+            const res = await api.get('/auth/check');
+            const Authdata = res.data.isAuth
+            // console.log(Authdata);
+            
+            setAuth(Authdata);
+
+           if(!Authdata){
+               alert('login please')
+            return; 
+           }else {
+               
+           const response = await api.post('/cart',{productId:id ,selectedSize:selectedSize})
+           console.log("kitty",response.data);
+           const data = response.data
+           
+           if (!data.existingItem) {
+               increment() 
+            }
+            
+            alert("product add to cart")
+
+           }
+
+
+        } catch (error) {
+            console.log(error);
+            setAuth(false)
+            
+        }
+      }
+       getter()
         
-       const res = await api.post('/cart',{productId:id ,selectedSize:selectedSize})
-       alert("product add to cart")
     }
 
     if (loading) return <p className="text-center mt-20">Loading...</p>;

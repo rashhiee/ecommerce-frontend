@@ -1,14 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faCartShopping, faUser } from "@fortawesome/free-solid-svg-icons";
 import api from "../services/axios";
-import Login from "../services/login";
+import { CartContext } from "./ContextCart";
+
 
 const Navbar = () => {
+
+  const { count } = useContext(CartContext)
+  console.log(count);
+
+
+
   const [auth, setAuth] = useState(() => {
     const saved = localStorage.getItem("isAuth");
-    return saved ? JSON.parse(saved) : false;
+    return saved === "true";
   });
   const [loading, setLoading] = useState(true);
   const [Cart, setCart] = useState([])
@@ -21,6 +28,17 @@ const Navbar = () => {
 
         const res = await api.get('/auth/check')
         console.log("value ", res);
+
+        if (!res.data.isAuth) {
+          if (res.data.message === "Your account has been deactivated by admin") {
+            localStorage.setItem("isAuth", "false");
+            navigate("/login");
+            alert("Your account has been deactivated by admin");
+          }
+          return;
+        }
+        
+
         setAuth(res.data.isAuth);
         localStorage.setItem("isAuth", JSON.stringify(res.data.isAuth));
       } catch (error) {
@@ -41,7 +59,7 @@ const Navbar = () => {
       if (!auth) return;
       try {
         const carts = await api.get("/cart")
-        console.log(carts.data);
+        // console.log(carts.data);
         setCart(carts.data.items);
       } catch (error) {
         console.log(error);
@@ -53,7 +71,7 @@ const Navbar = () => {
 
   }, [auth])
 
- 
+
 
   async function handleLogout() {
     console.log("logoutee");
@@ -101,9 +119,9 @@ const Navbar = () => {
           }
           <div className="relative">
             <FontAwesomeIcon onClick={() => navigate('/cart')} icon={faCartShopping} className="text-2xl cursor-pointer hover:text-[#eeecb1] transition-colors" />
-            {Cart.length > 0 ? (
+            {count > 0 ? (
 
-              <span class="absolute -top-2 left-4 rounded-full bg-red-500 p-0.5 px-2 text-xs text-red-50 font-serif">{Cart.length}</span>
+              <span className="absolute -top-2 left-4 rounded-full bg-red-500 p-0.5 px-2 text-xs text-red-50 font-serif">{count}</span>
             ) : (
               <span></span>
             )

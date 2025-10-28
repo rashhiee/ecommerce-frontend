@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../../services/axios'
 import { FaMinus, FaPlus, FaTrash } from 'react-icons/fa';
+import { CartContext } from '../../components/ContextCart';
 
 
 const Cart = () => {
 
+    const {decrement} = useContext(CartContext)
     const [cart, setCart] = useState({});
     const [render, setRender] = useState(false);
     const navigate = useNavigate();
@@ -63,6 +65,7 @@ const Cart = () => {
         setCart(deleted.data);
         alert(deleted.data.message);
         setRender(true)
+        decrement();
 
     };
 

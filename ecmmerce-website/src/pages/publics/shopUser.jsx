@@ -15,7 +15,7 @@ const ShopUser = () => {
         async function getter() {
             try {
                 const responce = await api.get('/product')
-                console.log(responce.data);
+                // console.log(responce.data);
                 setProducts(responce.data)
                 setFilteredProducts(responce.data)
                 window.scrollTo({ top: 0, behavior: "smooth" });

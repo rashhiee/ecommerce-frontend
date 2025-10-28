@@ -24,7 +24,7 @@ const HomePage = () => {
 
       const res = await api.get(`/category/${category}`)
       setProducts(res.data || [])
-      console.log("products",res.data);
+      // console.log("products",res.data);
 
     } catch (err) {
       console.error(err)

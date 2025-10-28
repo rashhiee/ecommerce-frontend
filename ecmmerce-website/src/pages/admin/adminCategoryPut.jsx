@@ -68,7 +68,7 @@ const AdminCategoryPut = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100 p-6">
             <div className="bg-white/80 backdrop-blur-md shadow-2xl rounded-2xl p-8 w-full max-w-lg">
-                {/* Header */}
+          
                 <div className="flex justify-between items-center mb-8">
                     <button
                         onClick={() => navigate('/admin/category')}
@@ -80,12 +80,12 @@ const AdminCategoryPut = () => {
                     <h2 className="text-2xl font-bold text-gray-800">Update Category</h2>
                 </div>
 
-                {/* Form */}
+               
                 <form
 
                     onSubmit={handleData}
                     method="POST" action="/api/categories" className="space-y-6">
-                    {/* Category Name */}
+        
                     <div className="relative">
                         <input
                             type="text"
@@ -110,7 +110,7 @@ const AdminCategoryPut = () => {
                     </div>
 
 
-                    {/* Description */}
+                  
                     <div className="relative">
                         <textarea
                             onChange={handleChange}
@@ -137,7 +137,7 @@ const AdminCategoryPut = () => {
 
 
                     {/* Image URL */}
-                    <div className="relative">
+                    {/* <div className="relative">
                         <input
                             onChange={handleChange}
                             value={form.image}
@@ -159,7 +159,7 @@ const AdminCategoryPut = () => {
                         >
                             Image URL
                         </label>
-                    </div>
+                    </div> */}
 
                     {/* Buttons */}
                     <div className="flex justify-end gap-4 pt-4">

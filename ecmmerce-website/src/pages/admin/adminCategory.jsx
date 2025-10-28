@@ -75,7 +75,7 @@ const AdminCategory = () => {
           <thead className="bg-blue-100 text-gray-700 text-sm uppercase tracking-wide">
             <tr>
               <th className="px-6 py-3 text-left">No.</th>
-              <th className="px-6 py-3 text-left">Image</th>
+              {/* <th className="px-6 py-3 text-left">Image</th> */}
               <th className="px-6 py-3 text-left">Category Name</th>
               <th className="px-6 py-3 text-left">Description</th>
               <th className="px-6 py-3 text-right">Actions</th>
@@ -90,13 +90,13 @@ const AdminCategory = () => {
                 >
                   <td className="px-6 py-4 text-gray-600">{index + 1}</td>
 
-                  <td className="px-1 py-1">
+                  {/* <td className="px-1 py-1">
                     <img
                       src={`http://localhost:3030/uploads/${cate.image}`}
                       alt={cate.name}
                       className="w-20 h-20 rounded "
                     />
-                  </td>
+                  </td> */}
 
                   <td className="px-6 py-4 font-medium text-gray-800">{cate.name}</td>
 
