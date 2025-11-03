@@ -16,7 +16,7 @@ const Cart = () => {
     useEffect(() => {
         async function getter() {
             try {
-                const res = await api.get('/cart')
+                const res = await api.get('/api/cart')
                 // console.log(res.data);
                 setCart(res.data);
                 // console.log(res.data);
@@ -61,7 +61,7 @@ const Cart = () => {
     const deleteItem = async (id) => {
 
         // console.log(id);
-        const deleted = await api.delete(`/cart/${id._id}`)
+        const deleted = await api.delete(`/api/cart/${id._id}`)
         setCart(deleted.data);
         alert(deleted.data.message);
         setRender(true)
@@ -78,7 +78,7 @@ const Cart = () => {
         }
 
         try {
-            const res = await api.put("/carts", cart);
+            const res = await api.put("/api/carts", cart);
             console.log(cart);
 
             navigate("/orders");
@@ -114,7 +114,7 @@ const Cart = () => {
                                         <div className="flex items-start gap-4">
                                             <div className="flex-shrink-0">
                                                 <img
-                                                    src={`http://localhost:3030/uploads/${item.image || "placeholder.jpg"}`}
+                                                    src={`http://13.48.178.218/uploads/${item.image || "placeholder.jpg"}`}
                                                     alt={item.productId.name || "Product"}
                                                     className="w-24 h-24 object-cover rounded-md border border-gray-200"
                                                 />

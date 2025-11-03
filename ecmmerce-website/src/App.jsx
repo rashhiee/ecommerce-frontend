@@ -105,7 +105,7 @@ function AppData() {
 
         } />
 
-
+       <Route path="*" element={<h2 className='text-red-600 mt-[300px] ml-[500px] font-bold  mb-[300px]'>404 - Not Found</h2>} />
 
       </Routes>
 

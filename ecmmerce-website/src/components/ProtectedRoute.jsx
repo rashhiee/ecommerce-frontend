@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }) => {
   const [isAuth, setIsAuth] = useState(null); // null = loading, true/false after check
 
   useEffect(() => {
-    api.get("/auth/check", { withCredentials: true })
+    api.get("/api/auth/check", { withCredentials: true })
       .then((res) => setIsAuth(res.data.isAuth))
       .catch(() => setIsAuth(false));
   }, []);

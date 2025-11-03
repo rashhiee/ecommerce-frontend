@@ -25,7 +25,7 @@ const Proucts = () => {
         async function getter() {
             try {
 
-                const response = await api.get(`/product/${id}`)
+                const response = await api.get(`/api/product/${id}`)
                 // console.log(response.data);
                 if (!response.data || response.data === "product not found") {
                     setError('Product not found');
@@ -38,7 +38,7 @@ const Proucts = () => {
                         const categoryName = prod.category.name;
                         // console.log(categoryName);
 
-                        const categoryRes = await api.get(`/category/${categoryName}`);
+                        const categoryRes = await api.get(`/api/category/${categoryName}`);
                         console.log(categoryRes);
                         setCatProducts(categoryRes.data);
 
@@ -67,7 +67,7 @@ const Proucts = () => {
         // console.log("hii");
       async function getter() {
         try {
-            const res = await api.get('/auth/check');
+            const res = await api.get('/api/auth/check');
             const Authdata = res.data.isAuth
             // console.log(Authdata);
             
@@ -78,7 +78,7 @@ const Proucts = () => {
             return; 
            }else {
                
-           const response = await api.post('/cart',{productId:id ,selectedSize:selectedSize})
+           const response = await api.post('/api/cart',{productId:id ,selectedSize:selectedSize})
            console.log("kitty",response.data);
            const data = response.data
            
@@ -111,7 +111,7 @@ const Proucts = () => {
 
                 <div className="md:w-1/2 h-full flex justify-center items-center">
                     <img
-                        src={`http://localhost:3030/uploads/${product.image}`}
+                        src={`http://13.48.178.218/uploads/${product.image}`}
                         alt={product.name}
                         className="w-full  max-h-[430px] object-cover object-bottom "
                     />
@@ -193,7 +193,7 @@ const Proucts = () => {
                         >
                             
                             <img
-                                src={`http://localhost:3030${p.image?.startsWith("/uploads/") ? p.image : "/uploads/" + p.image
+                                src={`http://13.48.178.218${p.image?.startsWith("/uploads/") ? p.image : "/uploads/" + p.image
                                     }`}
                                 alt={p.name}
                                 className="w-full h-[250px] object-cover object-bottom"

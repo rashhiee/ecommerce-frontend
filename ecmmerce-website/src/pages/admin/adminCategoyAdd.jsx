@@ -24,7 +24,7 @@ const AdminCategoyAdd = () => {
     const handleData = async (e) => {
         e.preventDefault();
         try {
-            const responce = await api.post('/admin/category', form)
+            const responce = await api.post('/api/admin/category', form)
             console.log(responce);
 
             alert("category added success");

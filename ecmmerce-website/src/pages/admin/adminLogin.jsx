@@ -11,7 +11,7 @@ const AdminLogin = () => {
        <Login 
         
         heading='Admin Login'
-        apiEndPoint='/admin/login'
+        apiEndPoint='/api/admin/login'
         apiDirection= '/admin/home'
 
        />

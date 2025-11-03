@@ -21,7 +21,7 @@ const AdminCategoryPut = () => {
     useEffect(() => {
         async function getter() {
             try {
-                const detail = await api.get(`/admin/category/${id}`)
+                const detail = await api.get(`/api/admin/category/${id}`)
                 console.log(detail);
                 console.log("hii");
                 
@@ -43,7 +43,7 @@ const AdminCategoryPut = () => {
     const handleData = async (e) => {
         e.preventDefault();
         try {
-            const responce = await api.put(`/admin/category/${id}`, form)
+            const responce = await api.put(`/api/admin/category/${id}`, form)
             console.log(responce);
             console.log("helloo");
             if (responce.data.success) {

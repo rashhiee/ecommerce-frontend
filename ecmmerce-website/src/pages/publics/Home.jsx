@@ -22,7 +22,7 @@ const HomePage = () => {
 
       await new Promise((resolve) => setTimeout(resolve, 500));
 
-      const res = await api.get(`/category/${category}`)
+      const res = await api.get(`/api/category/${category}`)
       setProducts(res.data || [])
       // console.log("products",res.data);
 
@@ -125,7 +125,7 @@ const HomePage = () => {
                   className="bg-white shadow-md rounded-sm overflow-hidden hover:scale-105 transition"
                 >
                   <img
-                    src={`http://localhost:3030/uploads/${p.image}`}
+                    src={`http://13.48.178.218/uploads/${p.image}`}
                     alt={p.name}
                     className={`w-full h-[220px] object-cover ${p.category.name == "men" ? "object-bottom" : "object-center"
                       }`}

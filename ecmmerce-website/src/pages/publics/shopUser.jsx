@@ -14,7 +14,7 @@ const ShopUser = () => {
     useEffect(() => {
         async function getter() {
             try {
-                const responce = await api.get('/product')
+                const responce = await api.get('/api/product')
                 // console.log(responce.data);
                 setProducts(responce.data)
                 setFilteredProducts(responce.data)
@@ -38,7 +38,7 @@ const ShopUser = () => {
 
 
         try {
-            const res = await api.post('/product/search', { word: search });
+            const res = await api.post('/api/product/search', { word: search });
             setFilteredProducts(res.data);
         } catch (err) {
             console.error(err);
@@ -124,7 +124,7 @@ const ShopUser = () => {
                                     className="bg-white rounded-sm shadow-md hover:shadow-xl transition duration-300 overflow-hidden hover:scale-105"
                                 >
                                     <img
-                                        src={product.imageUrl || `http://localhost:3030/uploads/${product.image}`}
+                                        src={product.imageUrl || `http://13.48.178.218/uploads/${product.image}`}
                                         alt={product.name}
                                         className={`w-full h-[220px] object-cover ${product.category ==
                                             "68f76822441ca1795000f0d2" ? "object-bottom" : "object-center"
