@@ -16,7 +16,7 @@ const AdminProductsView = () => {
   useEffect(() => {
     async function getter() {
       try {
-        const responce = await api.get('/api/admin/product')
+        const responce = await api.get('/admin/product')
         console.log(responce);
         setProduct(responce.data)
       } catch (error) {
@@ -34,7 +34,7 @@ const AdminProductsView = () => {
     try {
       console.log(id);
 
-      const deleted = await api.delete(`/api/admin/product/${id}`);
+      const deleted = await api.delete(`/admin/product/${id}`);
       console.log(deleted);
 
       if (deleted.data.success) {
@@ -113,7 +113,7 @@ const AdminProductsView = () => {
                     <td className="p-3 border-r">
                       {p.image ? (
                         <img
-                          src={`http://13.48.178.218/uploads/${p.image}`}
+                          src={`http://shoeboxee.duckdns.org/uploads/${p.image}`}
                           alt={p.name}
                           className="w-24 h-24 rounded-lg  shadow-sm"
                         />

@@ -17,7 +17,7 @@ const AdminUsers = () => {
     useEffect(() => {
         async function getter() {
             try {
-                const UserData = await api.get('/api/admin/users')
+                const UserData = await api.get('/admin/users')
                 console.log(UserData);
                 setForm(UserData.data);
             } catch (error) {
@@ -30,7 +30,7 @@ const AdminUsers = () => {
 
     const handleActive = async (id, newStatus) => {
         try {
-            const change = await api.put(`/api/admin/users/${id}`, { status: newStatus })
+            const change = await api.put(`/admin/users/${id}`, { status: newStatus })
             setForm(prev =>
                 prev.map(u => (u._id === id ? { ...u, status: newStatus } : u))
             );

@@ -8,7 +8,7 @@ const Logout = () => {
     const navigate = useNavigate();
     useEffect(() => {
        async function getter() {
-         const res = await api.post('/api/logout')
+         const res = await api.post('/logout')
          alert('logout successfull')
          navigate('/home')
        }

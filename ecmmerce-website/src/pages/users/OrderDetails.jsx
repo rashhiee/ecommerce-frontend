@@ -31,7 +31,7 @@ const OrderSuccess = () => {
 
     const latestOrder = async () => {
         try {
-            const res = await api.get("/api/orders");
+            const res = await api.get("/orders");
             setOrder(res.data);
             console.log("users", res.data);
 

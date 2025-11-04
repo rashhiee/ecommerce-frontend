@@ -10,7 +10,7 @@ const ContextCart = ({children}) => {
 
     useEffect(() => {
       async function getter() {
-        const responce = await api.get('/api/cart')
+        const responce = await api.get('/cart')
         console.log("the one",responce.data);   
         setCount(responce.data.items.length)
         

@@ -34,7 +34,7 @@ function Register() {
     setEmailError('');
     setPassError('')
     try {
-      const response = await api.post('/api/signup',
+      const response = await api.post('/signup',
         { email, name, password, Repassword }
       );
       console.log(response);

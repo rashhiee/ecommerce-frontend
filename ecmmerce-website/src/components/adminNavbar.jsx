@@ -10,7 +10,7 @@ export const AdminNavbar = () => {
     const navigate = useNavigate();
     
        async function handleLogout() {
-     const res = await api.post('/api/logout')
+     const res = await api.post('/logout')
      alert(res.data.message)
      navigate('/admin/login')
   }

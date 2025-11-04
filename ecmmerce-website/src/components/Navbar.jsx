@@ -26,7 +26,7 @@ const Navbar = () => {
     async function getter() {
       try {
 
-        const res = await api.get('/api/auth/check')
+        const res = await api.get('/auth/check')
         console.log("value ", res);
 
         if (!res.data.isAuth) {
@@ -58,7 +58,7 @@ const Navbar = () => {
     async function getterCart() {
       if (!auth) return;
       try {
-        const carts = await api.get("/api/cart")
+        const carts = await api.get("/cart")
         // console.log(carts.data);
         setCart(carts.data.items);
       } catch (error) {
@@ -75,7 +75,7 @@ const Navbar = () => {
 
   async function handleLogout() {
     console.log("logoutee");
-    const res = await api.post('/api/logout')
+    const res = await api.post('/logout')
     alert(res.data.message)
     setAuth(false);
     setCart([])

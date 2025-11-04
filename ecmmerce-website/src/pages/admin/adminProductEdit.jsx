@@ -27,7 +27,7 @@ const AdminProductEdit = () => {
     async function getter() {
 
       console.log(" Fetching product from:", `/admin/products/${id}`);
-      const response = await api.get(`/api/admin/product/${id}`)
+      const response = await api.get(`/admin/product/${id}`)
       console.log("product", response);
 
       // setData(response.data);
@@ -44,7 +44,7 @@ const AdminProductEdit = () => {
       setPreview(product.image || "");
       console.log("prr");
 
-      const responsetwo = await api.get('/api/admin/category')
+      const responsetwo = await api.get('/admin/category')
 
       console.log("category", responsetwo);
 
@@ -83,7 +83,7 @@ const AdminProductEdit = () => {
 
 
 
-      const detail = await api.put(`/api/admin/product/${id}`, formData, {
+      const detail = await api.put(`/admin/product/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
@@ -218,7 +218,7 @@ const AdminProductEdit = () => {
                 src={
                   preview.startsWith('blob')
                     ? preview
-                    : `http://13.48.178.218${preview.startsWith('/uploads/') ? preview : '/uploads/' + preview}`
+                    : `http://shoeboxee.duckdns.org${preview.startsWith('/uploads/') ? preview : '/uploads/' + preview}`
                 }
 
                 alt="preview"

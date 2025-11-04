@@ -22,7 +22,7 @@ const Orders = () => {
 
     useEffect(() => {
         async function Getter() {
-            const res = await api.get('/api/cart')
+            const res = await api.get('/cart')
             console.log(res.data);
             setCart(res.data);
         }
@@ -39,7 +39,7 @@ const Orders = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
        try {
-       const res = await api.post('/api/order',{address:form} )
+       const res = await api.post('/order',{address:form} )
        alert("order placed successfully")
        navigate('/order/details', { state: { order: res.data.order } })
         console.log("vanuu",res.data);
@@ -228,7 +228,7 @@ const Orders = () => {
                                     >
                                         <div className="flex items-center gap-3">
                                             <img
-                                                src={item?.productId?.image ? `http://13.48.178.218/uploads/${item.productId.image}` : "https://via.placeholder.com/60"}
+                                                src={item?.productId?.image ? `http://shoeboxee.duckdns.org/uploads/${item.productId.image}` : "https://via.placeholder.com/60"}
                                                 alt={item?.productId?.name || "Product"}
                                                 className="w-16 h-16 rounded-lg object-cover"
                                             />

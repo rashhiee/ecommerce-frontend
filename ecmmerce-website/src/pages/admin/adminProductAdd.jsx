@@ -22,7 +22,7 @@ const AdminProductAdd = () => {
 
     useEffect(() => {
         async function getter() {
-            const catData = await api.get('/api/admin/category')
+            const catData = await api.get('/admin/category')
             setCateg(catData.data);
         }
         getter();
@@ -40,7 +40,7 @@ const AdminProductAdd = () => {
             form.size.forEach((s) => formData.append("size[]", s));
             formData.append('image', form.image);
 
-            const response = await api.post('/api/admin/product', formData, {
+            const response = await api.post('/admin/product', formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             })
             console.log(response);

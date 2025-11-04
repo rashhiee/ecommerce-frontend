@@ -10,7 +10,7 @@ const AdminOrders = () => {
     const [orders, setOrder] = useState([]);
     useEffect(() => {
         async function getter() {
-            const res = await api.get('/api/admin/orders')
+            const res = await api.get('/admin/orders')
             console.log(res.data);
             setOrder(res.data)
 
@@ -19,7 +19,7 @@ const AdminOrders = () => {
     }, [])
 
      const  handleSubmit = async (newStatus,id) => {
-          const res = await api.put(`/api/admin/orders/${id}`,{status:newStatus})
+          const res = await api.put(`/admin/orders/${id}`,{status:newStatus})
           console.log(res.data);
           
      }

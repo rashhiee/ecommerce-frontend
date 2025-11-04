@@ -16,7 +16,7 @@ const AdminCategory = () => {
   useEffect(() => {
     async function fetcData() {
 
-      const response = await api.get('/api/admin/category')
+      const response = await api.get('/admin/category')
       console.log(response);
       setCategory(response.data)
     }
@@ -26,7 +26,7 @@ const AdminCategory = () => {
 
   async function handleDelete(id) {
 
-    const dele = await api.delete(`/api/admin/category/${id}`)
+    const dele = await api.delete(`/admin/category/${id}`)
 
     console.log(dele);
 
@@ -92,7 +92,7 @@ const AdminCategory = () => {
 
                   {/* <td className="px-1 py-1">
                     <img
-                      src={`http://13.48.178.218/uploads/${cate.image}`}
+                      src={`/http://shoeboxee.duckdns.org/uploads/${cate.image}`}
                       alt={cate.name}
                       className="w-20 h-20 rounded "
                     />

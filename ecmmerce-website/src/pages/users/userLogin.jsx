@@ -9,7 +9,7 @@ const UserLogin = () => {
         <div>
             <Login
                 heading='Login'
-                apiEndPoint='/api/login'
+                apiEndPoint='/login'
                 apiDirection= '/'
             />
         </div>

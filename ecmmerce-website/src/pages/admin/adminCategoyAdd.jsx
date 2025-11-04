@@ -24,7 +24,7 @@ const AdminCategoyAdd = () => {
     const handleData = async (e) => {
         e.preventDefault();
         try {
-            const responce = await api.post('/api/admin/category', form)
+            const responce = await api.post('/admin/category', form)
             console.log(responce);
 
             alert("category added success");
@@ -51,7 +51,7 @@ const AdminCategoyAdd = () => {
                 </div>
 
             
-                <form onSubmit={handleData} method="POST" action="/api/categories" className="space-y-6">
+                <form onSubmit={handleData} method="POST" action="/categories" className="space-y-6">
                   
                     <div className="relative">
                         <input
