@@ -114,7 +114,7 @@ const Cart = () => {
                                         <div className="flex items-start gap-4">
                                             <div className="flex-shrink-0">
                                                 <img
-                                                    src={`https://shoeboxee.duckdns.org/uploads/${item.image || "placeholder.jpg"}`}
+                                                    src={`https://shoeboxee.duckdns.org/api/uploads/${item.image || "placeholder.jpg"}`}
                                                     alt={item.productId.name || "Product"}
                                                     className="w-24 h-24 object-cover rounded-md border border-gray-200"
                                                 />

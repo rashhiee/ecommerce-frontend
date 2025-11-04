@@ -113,7 +113,7 @@ const AdminProductsView = () => {
                     <td className="p-3 border-r">
                       {p.image ? (
                         <img
-                          src={`https://shoeboxee.duckdns.org/uploads/${p.image}`}
+                          src={`https://shoeboxee.duckdns.org/api/uploads/${p.image}`}
                           alt={p.name}
                           className="w-24 h-24 rounded-lg  shadow-sm"
                         />

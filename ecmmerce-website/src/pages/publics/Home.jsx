@@ -125,7 +125,7 @@ const HomePage = () => {
                   className="bg-white shadow-md rounded-sm overflow-hidden hover:scale-105 transition"
                 >
                   <img
-                    src={`https://shoeboxee.duckdns.org/uploads/${p.image}`}
+                    src={`https://shoeboxee.duckdns.org/api/uploads/${p.image}`}
                     alt={p.name}
                     className={`w-full h-[220px] object-cover ${p.category.name == "men" ? "object-bottom" : "object-center"
                       }`}

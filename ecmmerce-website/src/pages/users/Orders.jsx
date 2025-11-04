@@ -228,7 +228,7 @@ const Orders = () => {
                                     >
                                         <div className="flex items-center gap-3">
                                             <img
-                                                src={item?.productId?.image ? `https://shoeboxee.duckdns.org/uploads/${item.productId.image}` : "https://via.placeholder.com/60"}
+                                                src={item?.productId?.image ? `https://shoeboxee.duckdns.org/api/uploads/${item.productId.image}` : "https://via.placeholder.com/60"}
                                                 alt={item?.productId?.name || "Product"}
                                                 className="w-16 h-16 rounded-lg object-cover"
                                             />
