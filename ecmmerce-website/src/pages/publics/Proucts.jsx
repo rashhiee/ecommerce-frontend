@@ -111,7 +111,7 @@ const Proucts = () => {
 
                 <div className="md:w-1/2 h-full flex justify-center items-center">
                     <img
-                        src={`http://shoeboxee.duckdns.org/uploads/${product.image}`}
+                        src={`https://shoeboxee.duckdns.org/uploads/${product.image}`}
                         alt={product.name}
                         className="w-full  max-h-[430px] object-cover object-bottom "
                     />
@@ -193,7 +193,7 @@ const Proucts = () => {
                         >
                             
                             <img
-                                src={`http://shoeboxee.duckdns.org${p.image?.startsWith("/uploads/") ? p.image : "/uploads/" + p.image
+                                src={`https://shoeboxee.duckdns.org${p.image?.startsWith("/uploads/") ? p.image : "/uploads/" + p.image
                                     }`}
                                 alt={p.name}
                                 className="w-full h-[250px] object-cover object-bottom"

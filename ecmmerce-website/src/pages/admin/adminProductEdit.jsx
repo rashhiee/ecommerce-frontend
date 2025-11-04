@@ -218,7 +218,7 @@ const AdminProductEdit = () => {
                 src={
                   preview.startsWith('blob')
                     ? preview
-                    : `http://shoeboxee.duckdns.org${preview.startsWith('/uploads/') ? preview : '/uploads/' + preview}`
+                    : `https://shoeboxee.duckdns.org${preview.startsWith('/uploads/') ? preview : '/uploads/' + preview}`
                 }
 
                 alt="preview"

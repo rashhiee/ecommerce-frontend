@@ -124,7 +124,7 @@ const ShopUser = () => {
                                     className="bg-white rounded-sm shadow-md hover:shadow-xl transition duration-300 overflow-hidden hover:scale-105"
                                 >
                                     <img
-                                        src={product.imageUrl || `http://shoeboxee.duckdns.org/uploads/${product.image}`}
+                                        src={product.imageUrl || `https://shoeboxee.duckdns.org/uploads/${product.image}`}
                                         alt={product.name}
                                         className={`w-full h-[220px] object-cover ${product.category ==
                                             "68f76822441ca1795000f0d2" ? "object-bottom" : "object-center"

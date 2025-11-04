@@ -92,7 +92,7 @@ const AdminCategory = () => {
 
                   {/* <td className="px-1 py-1">
                     <img
-                      src={`/http://shoeboxee.duckdns.org/uploads/${cate.image}`}
+                      src={`/https://shoeboxee.duckdns.org/uploads/${cate.image}`}
                       alt={cate.name}
                       className="w-20 h-20 rounded "
                     />

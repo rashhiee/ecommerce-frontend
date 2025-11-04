@@ -86,7 +86,7 @@ const AdminOrders = () => {
                                     <h4 className="text-gray-700 font-medium mb-2">Customer</h4>
                                     <div className="flex items-center gap-3">
                                         <svg
-                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns="https://www.w3.org/2000/svg"
                                             className="w-6 h-6 text-blue-500"
                                             fill="none"
                                             viewBox="0 0 24 24"

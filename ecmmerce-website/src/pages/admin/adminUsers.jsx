@@ -94,7 +94,7 @@ const AdminUsers = () => {
                                 <tr key={index} className="border-b hover:bg-gray-50">
                                     <td className="px-6 py-4 flex items-center space-x-3">
                                         <svg
-                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns="https://www.w3.org/2000/svg"
                                             className="w-5 h-5 text-gray-500"
                                             viewBox="0 0 24 24"
                                             fill="none"
@@ -128,7 +128,7 @@ const AdminUsers = () => {
                                             user.status === "active" ? (
                                                 <button onClick={() => handleActive(user._id, "inactive")} className="text-green-600 hover:text-green-800 mr-2">
                                                     <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns="https://www.w3.org/2000/svg"
                                                         className="w-5 h-5"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
@@ -147,7 +147,7 @@ const AdminUsers = () => {
                                             ) : (
                                                 <button onClick={() => handleActive(user._id, "active")} className="text-red-500 hover:text-red-700">
                                                     <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns="https://www.w3.org/2000/svg"
                                                         className="w-5 h-5"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
