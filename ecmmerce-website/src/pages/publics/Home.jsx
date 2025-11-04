@@ -115,7 +115,7 @@ const HomePage = () => {
           <p className="text-center text-gray-500 py-10">Loading...</p>
         ) : error ? (
           <p className="text-center text-red-500 py-10">{error}</p>
-        ) : products.length > 0 ? (
+        ) : Array.isArray(products) && products.length > 0 ? (
           <>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
               {products.slice(0, 8).map((p) => (
