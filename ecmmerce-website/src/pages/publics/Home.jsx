@@ -52,7 +52,7 @@ const HomePage = () => {
   return (
     <div className='w-full h-auto '>
       <div
-        className="relative mt-[66px] w-full h-screen bg-cover bg-center bg-no-repeat"
+        className="relative mt-[60px] w-full h-screen bg-cover bg-center bg-no-repeat"
 
         style={{ backgroundImage: "url('/images/mainpage.webp')" }}
       >
@@ -71,26 +71,27 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className='bg-white w-full h-auto p-12 flex justify-center'>
-        <div className='flex flex-col gap-5  items-center'>
+      <div className='bg-white w-full h-auto py-12 flex justify-center'>
+        <div className='flex flex-col gap-5 w-full items-center'>
           <h1 className='font-bold p-1 text-2xl'> Trending now </h1>
-          <div className="flex w-full gap-2 p-2 h-[500px]">
+          <div className="flex flex-col sm:flex-row w-full gap-2 h-auto sm:h-[500px]">
             <img
               src="/images/vans3.png.png"
               alt="Image 1"
-              className="w-1/3 h-full "
+              className="w-full sm:w-1/3 h-[250px] sm:h-full object-cover"
             />
             <img
               src="/images/vans4.png.png"
               alt="Image 2"
-              className="w-1/3 h-full "
+              className="w-full sm:w-1/3 h-[250px] sm:h-full object-cover"
             />
             <img
               src="/images/vans2.png.png"
               alt="Image 3"
-              className="w-1/3 h-full "
+              className="w-full sm:w-1/3 h-[250px] sm:h-full object-cover"
             />
           </div>
+
 
 
           <div className='w-auto h-auto   px-6 bg-[#e8e2d9e1] rounded-[8px] flex justify-between items-center'>

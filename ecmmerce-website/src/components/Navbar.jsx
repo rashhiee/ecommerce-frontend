@@ -84,7 +84,7 @@ const Navbar = () => {
 
   if (loading) {
     return (
-      <nav className="w-full bg-[#f4f0eae1] text-[#2b333a] px-3 py-3 shadow-md fixed top-0 left-0 z-50 flex justify-center items-center">
+      <nav className="w-full bg-[#ffffffe1] text-[#2b333a] px-3 py-3 shadow-md fixed top-0 left-0 z-50 flex justify-center items-center">
         <span className="text-sm text-gray-600">Loading...</span>
       </nav>
     );

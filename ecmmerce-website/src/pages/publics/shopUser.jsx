@@ -48,64 +48,71 @@ const ShopUser = () => {
 
 
     return (
-        <div className='mt-[68px]'>
+        <div className='pt-[60px]'>
 
-            <div className="w-full bg-[#1f262d] py-8">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 px-4">
-
-
-                    <div className="overflow-hidden  shadow-lg">
+            <div className="w-full bg-[#eeecdaa4] py-10">
+                <div className="w-full px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
+                    <div className="overflow-hidden shadow-lg">
                         <img
-                            src="/images/jack&jones4.png"
+                            src="/images/pintu4.png"
                             alt="Shoe 1"
-                            className="w-full h-64  hover:scale-105 transition duration-500"
+                            className="w-full h-[350px] hover:scale-105 transition duration-500"
                         />
                     </div>
 
-
-                    <div className="overflow-hidden  shadow-lg">
+                    <div className="overflow-hidden shadow-lg">
                         <img
-                            src="/images/jack&jones1.png"
+                            src="/images/pintu1.jpg"
                             alt="Shoe 2"
-                            className="w-full h-64  hover:scale-105 transition duration-500"
+                            className="w-full h-[350px] hover:scale-105 transition duration-500"
                         />
                     </div>
 
-                    <div className="overflow-hidden  shadow-lg">
+                    <div className="overflow-hidden shadow-lg">
                         <img
-                            src="/images/jack&jones2.png"
+                            src="/images/pintu2.jpg"
                             alt="Shoe 3"
-                            className="w-full h-64  hover:scale-105 transition duration-500"
+                            className="w-full h-[350px] hover:scale-105 transition duration-500"
                         />
                     </div>
 
-
-                    <div className="overflow-hidden  shadow-lg">
+                    <div className="overflow-hidden shadow-lg">
                         <img
-                            src="/images/jack&jones3.png"
+                            src="/images/pintu3.jpg"
                             alt="Shoe 4"
-                            className="w-full h-64  hover:scale-105 transition duration-500"
+                            className="w-full h-[350px] hover:scale-105 transition duration-500"
                         />
                     </div>
-
                 </div>
             </div>
 
-            <div className='w-full flex flex-col gap-3 items-center '>
-                <h1 className='font-bold p-1 text-2xl mt-8'>Discover the trending potentials</h1>
-                <h1 className=' pb-5 text-sm '>find the perfect piece for your comfort</h1>
-                <div className="w-[700px] mb-5 h-[50px] bg-white border border-black rounded-md flex items-center px-3 relative">
+
+            <div className="w-full flex flex-col gap-3 items-center px-4">
+                <h1 className="font-bold p-1 text-2xl sm:text-3xl mt-8 text-center">
+                    Discover the trending potentials
+                </h1>
+                <h1 className="pb-5 text-sm sm:text-base text-center">
+                    find the perfect piece for your comfort
+                </h1>
+
+                <div className="w-full sm:w-[500px] md:w-[700px] mb-5 h-[45px] sm:h-[50px] bg-white border border-black rounded-md flex items-center px-3 relative">
                     <input
                         type="text"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search..."
-                        className="w-full h-full pr-10 outline-none text-gray-700 placeholder-gray-500"
-                        onKeyDown={(e) => { if (e.key === "Enter") handleSearch() }}
+                        className="w-full h-full pr-10 outline-none text-gray-700 placeholder-gray-500 text-sm sm:text-base"
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') handleSearch();
+                        }}
                     />
-                    <FaSearch onClick={handleSearch} className="absolute right-3 text-gray-500 cursor-pointer" />
+                    <FaSearch
+                        onClick={handleSearch}
+                        className="absolute right-3 text-gray-500 cursor-pointer"
+                    />
                 </div>
             </div>
+
 
             <div className="w-full bg-gray-50 py-10">
                 <div className="max-w-7xl mx-auto px-6">
