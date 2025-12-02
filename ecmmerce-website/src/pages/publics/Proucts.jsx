@@ -1,13 +1,16 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext ,useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import api from '../../services/axios';
 import { FaHeart } from 'react-icons/fa';
 import { CartContext } from '../../components/ContextCart';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const Proucts = () => {
 
-    const {increment} = useContext(CartContext)
+      const scrollRef = useRef(null);
+
+    const { increment } = useContext(CartContext)
 
     const { id } = useParams();
     const [product, setProduct] = useState(null);
@@ -16,7 +19,7 @@ const Proucts = () => {
     const [error, setError] = useState('');
     const [catProducts, setCatProducts] = useState([]);
     const navigate = useNavigate();
-    const [auth,setAuth] = useState(false);
+    const [auth, setAuth] = useState(false);
 
 
 
@@ -47,7 +50,7 @@ const Proucts = () => {
 
                     }
 
-                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    window.scrollTo({ top: 0, behavior: "smooth" });
 
 
 
@@ -65,71 +68,83 @@ const Proucts = () => {
 
     const handleCart = async (id) => {
         // console.log("hii");
-      async function getter() {
-        try {
-            const res = await api.get('/auth/check');
-            const Authdata = res.data.isAuth
-            // console.log(Authdata);
-            
-            setAuth(Authdata);
+        async function getter() {
+            try {
+                const res = await api.get('/auth/check');
+                const Authdata = res.data.isAuth
+                // console.log(Authdata);
 
-           if(!Authdata){
-               alert('login please')
-            return; 
-           }else {
-               
-           const response = await api.post('/cart',{productId:id ,selectedSize:selectedSize})
-           console.log("kitty",response.data);
-           const data = response.data
-           
-           if (!data.existingItem) {
-               increment() 
+                setAuth(Authdata);
+
+                if (!Authdata) {
+                    toast.error('login please')
+                    return;
+                } else {
+
+                    const response = await api.post('/cart', { productId: id, selectedSize: selectedSize })
+                    console.log("kitty", response.data);
+                    const data = response.data
+
+                    if (!data.existingItem) {
+                        increment()
+                    }
+
+                    toast.success("product add to cart")
+
+                }
+
+
+            } catch (error) {
+                console.log(error);
+                setAuth(false)
+
             }
-            
-            alert("product add to cart")
-
-           }
-
-
-        } catch (error) {
-            console.log(error);
-            setAuth(false)
-            
         }
-      }
-       getter()
-        
+        getter()
+
     }
 
     if (loading) return <p className="text-center mt-20">Loading...</p>;
     if (error) return <p className="text-center mt-20 text-red-500">{error}</p>;
 
+  
+
+    const scrollLeft = () => {
+        scrollRef.current?.scrollBy({ left: -300, behavior: "smooth" });
+    };
+
+    const scrollRight = () => {
+        scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
+    };
+
+
+
     return (
 
-        <div>
-            <div className="w-[80%] mt-[120px] mx-auto bg-white shadow-lg rounded-xl overflow-hidden flex flex-col md:flex-row p-8 gap-6">
+        <div className='mb-[50px]'>
+            <Toaster position="top-center" reverseOrder={false} />
+            <div className="w-full max-w-[90%] md:w-[80%] mt-[120px] mx-auto bg-white shadow-lg rounded-xl overflow-hidden flex flex-col md:flex-row p-4 sm:p-6 md:p-8 gap-6">
 
-                <div className="md:w-1/2 h-full flex justify-center items-center">
+                <div className="md:w-1/2 w-full flex justify-center items-center">
                     <img
-                        src={`https://shoeboxee.duckdns.org/api/uploads/${product.image}`}
+                        src={`${import.meta.env.VITE_IMAGE_URL}${product.image}`}
                         alt={product.name}
-                        className="w-full  max-h-[430px] object-cover object-bottom "
+                        className="w-full max-h-[380px] sm:max-h-[430px] object-cover object-bottom"
                     />
                 </div>
 
-
-                <div className="md:w-1/2 flex flex-col justify-between">
+                <div className="md:w-1/2 w-full flex flex-col justify-between">
                     <div>
 
-                        <h2 className="text-3xl font-bold text-gray-800 mb-3">{product.name}</h2>
-
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">
+                            {product.name}
+                        </h2>
 
                         <p className="text-gray-600 text-sm mb-4">{product.description}</p>
 
-
                         <div>
                             <hr className="border-gray-300 mb-2" />
-                            <div className="flex items-center gap-4 mb-2">
+                            <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-2">
                                 <p className="text-lg font-semibold text-yellow-600">
                                     ₹{product.price?.toFixed(2)}
                                 </p>
@@ -138,9 +153,7 @@ const Proucts = () => {
                                 </p>
                                 <span className="text-green-600 font-semibold">30% OFF</span>
                             </div>
-                            <p className="text-sm text-gray-500">
-                                *Price includes all taxes
-                            </p>
+                            <p className="text-sm text-gray-500">*Price includes all taxes</p>
                             <hr className="border-gray-300 mt-3 mb-3" />
                         </div>
 
@@ -164,9 +177,11 @@ const Proucts = () => {
                         </div>
                     </div>
 
-
                     <div className="flex flex-col sm:flex-row gap-3 mt-2">
-                        <button onClick={() => handleCart(product._id)} className="flex-1 bg-[#bdaa8ee1] text-[#433e37e1] font-semibold py-3 rounded-md hover:bg-[#ca9b54e1] transition-all">
+                        <button
+                            onClick={() => handleCart(product._id)}
+                            className="flex-1 bg-[#bdaa8ee1] text-[#433e37e1] font-semibold py-3 rounded-md hover:bg-[#ca9b54e1] transition-all"
+                        >
                             Add to Cart
                         </button>
                         <button className="flex-1 bg-[#2b333a] text-[#f4f0eae1] font-semibold py-3 rounded-md hover:bg-[#141b21] transition-all">
@@ -174,37 +189,60 @@ const Proucts = () => {
                         </button>
                     </div>
                 </div>
+
             </div>
 
-            <div className='w-full h-auto p-5 mt-10'>
-                {/* <h1 className='font-bold p-1 text-2xl'> Feel Something New. </h1> */}
-                <h2 className='mb-5 p-1 text-lg font-thin'> You Might also like . </h2>
+
+            <div className="w-full h-auto p-5 mt-10">
+
+                {/* HEADER LINE WITH ARROWS */}
+                <div className="flex justify-between items-center px-1 mb-5">
+                    <h2 className="text-lg font-thin">You Might Also Like</h2>
+
+                    {/* Scroll Arrows */}
+                    <div className="flex gap-3">
+                        <button
+                            onClick={scrollLeft}
+                            className="w-10 h-10 flex items-center justify-center border rounded-full text-gray-500 hover:bg-gray-200"
+                        >
+                            ◀
+                        </button>
+
+                        <button
+                            onClick={scrollRight}
+                            className="w-10 h-10 flex items-center justify-center border rounded-full  text-gray-500 hover:bg-gray-200"
+                        >
+                            ▶
+                        </button>
+                    </div>
+                </div>
+
+                {/* SCROLL AREA */}
                 <div
-                    className="flex gap-1 overflow-x-auto px-2 pb-4 scrollbar-hide scroll-smooth snap-x snap-mandatory"
+                    ref={scrollRef}
+                    className="flex gap-2 overflow-x-auto px-2 pb-4 scrollbar-hide scroll-smooth snap-x snap-mandatory"
                 >
-                    
                     {catProducts.map((p) => (
                         <div
-                            onClick={() => navigate(`/product/${p._id}`)}
                             key={p._id}
-                            className="flex-shrink-0 w-48 bg-white border border-gray-200 
-                 rounded-sm shadow-sm hover:shadow-lg transition-all 
-                 cursor-pointer snap-start"
+                            onClick={() => navigate(`/product/${p._id}`)}
+                            className="flex-shrink-0 w-[200px] bg-white border border-gray-200 
+        rounded-sm shadow-sm hover:shadow-lg transition cursor-pointer snap-start"
                         >
-                            
                             <img
-                                src={`https://shoeboxee.duckdns.org/api${p.image?.startsWith("/uploads/") ? p.image : "/uploads/" + p.image
-                                    }`}
+                                src={`https://shoeboxee.duckdns.org/api${p.image?.startsWith("/uploads/") ? p.image : "/uploads/" + p.image}`}
                                 alt={p.name}
-                                className="w-full h-[250px] object-cover object-bottom"
+                                className="w-full h-[200px] object-cover object-bottom"
                             />
                             <div className="p-2 text-center">
                                 <p className="text-sm font-medium text-gray-800 truncate">{p.name}</p>
                             </div>
                         </div>
                     ))}
-                </div>                
+                </div>
+
             </div>
+
         </div>
 
     )

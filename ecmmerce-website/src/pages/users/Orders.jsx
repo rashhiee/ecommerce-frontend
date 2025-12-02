@@ -2,9 +2,13 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import api from '../../services/axios';
 import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../../components/ContextCart';
+import { useContext } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Orders = () => {
-
+    const {decrement} = useContext(CartContext)
     const [cart, setCart] = useState([]);
     const navigate = useNavigate();
     const [form, setForm] = useState({
@@ -40,12 +44,13 @@ const Orders = () => {
         e.preventDefault();
        try {
        const res = await api.post('/order',{address:form} )
-       alert("order placed successfully")
+       toast.success("order placed successfully")
        navigate('/order/details', { state: { order: res.data.order } })
+       decrement();
         console.log("vanuu",res.data);
        } catch (error) {
          console.log(error)
-         alert("some error ocuured")
+         toast.error("some error ocuured")
        }
     }
 
@@ -55,6 +60,7 @@ const Orders = () => {
     return (
 
         <div className="mt-[75px] min-h-screen bg-gray-50 flex flex-col justify-center items-start py-10 px-4">
+            <Toaster position="top-center" reverseOrder={false} />
             <h1 className="text-2xl font-semibold text-[#982020] mb-6 border-b pb-3">
                 Secure Checkout
             </h1>
@@ -228,7 +234,7 @@ const Orders = () => {
                                     >
                                         <div className="flex items-center gap-3">
                                             <img
-                                                src={item?.productId?.image ? `https://shoeboxee.duckdns.org/api/uploads/${item.productId.image}` : "https://via.placeholder.com/60"}
+                                                src={item?.productId?.image ? `${import.meta.env.VITE_IMAGE_URL}${item.productId.image}` : "https://via.placeholder.com/60"}
                                                 alt={item?.productId?.name || "Product"}
                                                 className="w-16 h-16 rounded-lg object-cover"
                                             />

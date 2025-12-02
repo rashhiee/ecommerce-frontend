@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import api from '../../services/axios';
 import { useForm } from 'react-hook-form';
 import { FaArrowLeft } from 'react-icons/fa'
+import { Toaster } from 'react-hot-toast';
 
 
 function Register() {
@@ -64,6 +65,7 @@ function Register() {
 
   return (
     <div className=" mt-[60px]  pt-5 flex justify-center items-center min-h-[100vh] bg-[#e6edf3]">
+      {/* <Toaster position="top-center" reverseOrder={false} /> */}
 
       <button
         onClick={() => navigate('/')}

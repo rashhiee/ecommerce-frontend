@@ -4,6 +4,7 @@ import api from './axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import { FaArrowLeft } from 'react-icons/fa'
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -19,6 +20,7 @@ function Login({ heading, apiEndPoint, apiDirection }) {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [session, setSession] = useState('');
+
   // const [errors ,setErrors] = useState<{email: string , password:string}>({
   //    email : "",
   //    password : ""
@@ -46,6 +48,7 @@ function Login({ heading, apiEndPoint, apiDirection }) {
       if (response.data.success) {
         console.log("okkk");
          localStorage.setItem("isAuth", "true");
+         toast.success('login success')
          navigate(apiDirection)
            window.location.reload();
 
@@ -81,7 +84,7 @@ function Login({ heading, apiEndPoint, apiDirection }) {
 
   return (
     <div className="flex pt-12 justify-center items-center min-h-[100vh] bg-[#e6edf3] relative ">
-       
+       <Toaster position="top-center" reverseOrder={false} />
       <button
                 onClick={() => navigate('/')}
                 type="button"
@@ -90,7 +93,7 @@ function Login({ heading, apiEndPoint, apiDirection }) {
                 <FaArrowLeft className="mr-2" /> Back
               </button>
 
-      <form onSubmit={handleSubmit(handleData)} className="bg-white p-5 rounded-lg shadow-lg w-120  ">
+      <form onSubmit={handleSubmit(handleData)}  className="bg-white p-5 rounded-lg shadow-lg w-120  ">
         <h2 className="text-2xl font-bold mb-6 text-center text-black">
           {heading}
         </h2>

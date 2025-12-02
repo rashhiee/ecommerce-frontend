@@ -4,16 +4,16 @@ import {
   Route,
   useLocation
 } from 'react-router-dom';
+
+
+// import Login from './services/login';
 import Navbar from "./components/Navbar"
 import AdminNavbar from './components/adminNavbar';
-
 import Footer from './components/Footer';
 import Home from './pages/publics/Home';
-// import Login from './services/login';
 import Register from './pages/users/Register';
 import AdminLogin from './pages/admin/adminLogin';
 import UserLogin from './pages/users/userLogin';
-
 import Contact from './pages/publics/ContactPage';
 import ShopUser from './pages/publics/shopUser';
 import Proucts from './pages/publics/Proucts';
@@ -22,6 +22,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Orders from './pages/users/Orders';
 import OrderSuccess from './pages/users/OrderDetails';
 import AdminRoute from './services/admin/adminRoute';
+import NotFound from './services/UnPage';
 
 
 
@@ -29,22 +30,20 @@ function AppData() {
 
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
-  // const isUserRoute = location.pathname.startsWith('/user');
-
+  
   const isLoginRoute = location.pathname === '/admin/login' ;
-                      //  location.pathname === '/login' ||
-                      //  location.pathname === '/register' ;
-                     
+  
+   // const isUserRoute = location.pathname.startsWith('/user');
+   //  location.pathname === '/login' ||
+   //  location.pathname === '/register' ;
+   // location.pathname === '/register' ||   location.pathname === '/login'  ||
+                    
 
   const hideFooter = location.pathname === '/contact' ||    isAdminRoute;
-  // location.pathname === '/register' ||   location.pathname === '/login'  ||
 
 
   return (
     <>
-      
-     
-
 
       {!isLoginRoute && (
       isAdminRoute ? 
@@ -53,8 +52,6 @@ function AppData() {
    
        <Navbar />
       )}
-
-
 
       <Routes>
         {/* {=============== public ===================} */}
@@ -105,7 +102,7 @@ function AppData() {
 
         } />
 
-       <Route path="*" element={<h2 className='text-red-600 mt-[300px] ml-[500px] font-bold  mb-[300px]'>404 - Not Found</h2>} />
+       <Route path="*" element={ <NotFound />} />
 
       </Routes>
 
@@ -127,6 +124,7 @@ function App() {
         <AppData />
 
       </Router>
+
     </div>
 
   )

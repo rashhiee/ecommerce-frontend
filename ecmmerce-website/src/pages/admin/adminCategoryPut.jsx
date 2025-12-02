@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useParams, useNavigate } from 'react-router-dom'
 import api from '../../services/axios';
 import { FaArrowLeft, FaPlus } from 'react-icons/fa'
+import toast, { Toaster } from 'react-hot-toast';
 
 const AdminCategoryPut = () => {
 
@@ -48,10 +49,10 @@ const AdminCategoryPut = () => {
             console.log("helloo");
             if (responce.data.success) {
                 
-                alert(responce.data.message)
+                toast.success(responce.data.message)
             }else{
                 if (!responce.data.success) {
-                    alert(responce.data.message)
+                    toast.success(responce.data.message)
                 }
             }
             
@@ -59,7 +60,7 @@ const AdminCategoryPut = () => {
 
         } catch (error) {
             console.error("Error adding category:", error);
-            alert(" Failed to update category.");
+            toast.error(" Failed to update category.");
         }
     }
 
@@ -67,6 +68,7 @@ const AdminCategoryPut = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100 p-6">
+            <Toaster position="top-center" reverseOrder={false} />
             <div className="bg-white/80 backdrop-blur-md shadow-2xl rounded-2xl p-8 w-full max-w-lg">
           
                 <div className="flex justify-between items-center mb-8">

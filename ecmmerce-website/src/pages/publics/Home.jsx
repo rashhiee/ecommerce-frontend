@@ -52,64 +52,94 @@ const HomePage = () => {
   return (
     <div className='w-full h-auto '>
       <div
-        className="relative mt-[60px] w-full h-screen bg-cover bg-center bg-no-repeat"
-
+        className="relative mt-[60px] w-full h-[60vh] sm:h-[70vh] md:h-screen bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/images/mainpage.webp')" }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 
-        <div className="relative z-10 flex items-center justify-start h-full px-10 md:px-20">
-          <div className="max-w-md text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">Step Into Style</h1>
-            <p className="text-lg md:text-xl mb-6">
+        <div className="relative z-10 flex items-center justify-center md:justify-start h-full px-4 sm:px-8 md:px-20">
+          <div className="max-w-md sm:max-w-lg text-center md:text-left text-white">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4">Step Into Style</h1>
+            <p className="text-base sm:text-lg md:text-xl mb-6">
               Discover the latest trends and timeless classics — all in one place.
             </p>
-            <button className="bg-[#2b333a] text-white px-6 py-2 rounded-lg hover:bg-[#2c89a6] transition">
+            <button className="bg-[#2b333a] text-white px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg hover:bg-[#2c89a6] transition">
               Shop Now
             </button>
           </div>
         </div>
       </div>
 
-      <div className='bg-white w-full h-auto py-12 flex justify-center'>
-        <div className='flex flex-col gap-5 w-full items-center'>
-          <h1 className='font-bold p-1 text-2xl'> Trending now </h1>
-          <div className="flex flex-col sm:flex-row w-full gap-2 h-auto sm:h-[500px]">
+
+      <div className="bg-white w-full h-auto py-12 flex justify-center">
+        <div className="flex flex-col gap-8 w-full max-w-7xl items-center px-4">
+
+          <h1 className="font-bold text-2xl">Find Your Perfect Fit</h1>
+
+          {/* Images */}
+          <div className="flex flex-col sm:flex-row w-full ">
+
             <img
-              src="/images/vans3.png.png"
+              src="/images/pintu5.jpg"
               alt="Image 1"
-              className="w-full sm:w-1/3 h-[250px] sm:h-full object-cover"
+              className="
+          w-full sm:w-1/3 object-cover 
+          h-[240px] 
+          sm:h-[350px] 
+          lg:h-[380px] 
+          xl:h-[450px] 
+          2xl:h-[550px]
+        "
             />
+
             <img
-              src="/images/vans4.png.png"
+              src="/images/pintu8.jpg"
               alt="Image 2"
-              className="w-full sm:w-1/3 h-[250px] sm:h-full object-cover"
+              className="
+          w-full sm:w-1/3 object-cover 
+          h-[240px] 
+          sm:h-[350px] 
+          lg:h-[380px] 
+          xl:h-[450px] 
+          2xl:h-[550px]
+        "
             />
+
             <img
-              src="/images/vans2.png.png"
+              src="/images/pintu9.jpg"
               alt="Image 3"
-              className="w-full sm:w-1/3 h-[250px] sm:h-full object-cover"
+              className="
+          w-full sm:w-1/3 object-cover 
+          h-[240px] 
+          sm:h-[350px] 
+          lg:h-[380px] 
+          xl:h-[450px] 
+          2xl:h-[550px]
+        "
             />
           </div>
 
-
-
-          <div className='w-auto h-auto   px-6 bg-[#e8e2d9e1] rounded-[8px] flex justify-between items-center'>
+          {/* Category Buttons */}
+          <div className="flex gap-3 px-6 py-2 bg-[#e8e2d9e1] rounded-[8px]">
             {['men', 'women', 'kids'].map((cat) => (
               <div
                 key={cat}
                 onClick={() => handleClick(cat)}
-                className={`py-3 px-6 rounded-[6px] cursor-pointer transition ${selectedCategory === cat
-                  ? 'bg-[#e9e4dde1] text-white'
-                  : 'hover:bg-[#f4f0eae1]'
+                className={`py-3 px-6 rounded-[6px] cursor-pointer transition 
+            ${selectedCategory === cat
+                    ? 'bg-[#2b333a] text-white'
+                    : 'hover:bg-[#f4f0eae1]'
                   }`}
               >
-                <p className='font-medium capitalize'>{cat}</p>
+                <p className="font-medium capitalize">{cat}</p>
               </div>
             ))}
           </div>
+
         </div>
       </div>
+
+
 
       <div className="w-full max-w-6xl mx-auto px-6 pb-16">
         {loading ? (
@@ -126,7 +156,7 @@ const HomePage = () => {
                   className="bg-white shadow-md rounded-sm overflow-hidden hover:scale-105 transition"
                 >
                   <img
-                    src={`https://shoeboxee.duckdns.org/api/uploads/${p.image}`}
+                    src={`${import.meta.env.VITE_IMAGE_URL}${p.image}`}
                     alt={p.name}
                     className={`w-full h-[220px] object-cover ${p.category.name == "men" ? "object-bottom" : "object-center"
                       }`}
@@ -158,7 +188,7 @@ const HomePage = () => {
         )}
       </div>
 
-      <div className='bg-black w-full py-5 flex gap-5 justify-center items-center text-white mt-10'>
+      <div className='bg-black w-full py-5 flex flex-col sm:flex-row gap-5 justify-center items-center text-white mt-10'>
 
         <p>Be the first to know about new arrivals</p>
         <button

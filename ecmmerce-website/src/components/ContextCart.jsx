@@ -4,19 +4,26 @@ import api from '../services/axios';
 export const CartContext = createContext()
 
 
-const ContextCart = ({children}) => {
-    const [count,setCount] = useState(0);
-    
+const ContextCart = ({ children }) => {
+  const [count, setCount] = useState(0);
 
-    useEffect(() => {
-      async function getter() {
-        const responce = await api.get('/cart')
-        console.log("the one",responce.data);   
-        setCount(responce.data.items.length)
+
+  useEffect(() => {
+    async function getter() {
+      try {
         
+        const responce = await api.get('/cart')
+        console.log("the one", responce.data);
+        const length = responce?.data?.items?.length || 0;
+        setCount(length);
+
+      } catch (error) {
+        console.log(error);
+        setCount(0)
       }
-      getter();
-    },[])
+    }
+    getter();
+  }, [])
 
 
   const increment = () => {
@@ -24,18 +31,18 @@ const ContextCart = ({children}) => {
   }
 
   const decrement = () => {
-    setCount(prev=>(prev > 0 ? prev - 1 : 0))
+    setCount(prev => (prev > 0 ? prev - 1 : 0))
   }
 
 
   return (
     <div>
-        <CartContext.Provider 
-        value={{count , increment , decrement}}
-        >
-            {children}
+      <CartContext.Provider
+        value={{ count, increment, decrement }}
+      >
+        {children}
 
-        </CartContext.Provider>
+      </CartContext.Provider>
 
     </div>
   )

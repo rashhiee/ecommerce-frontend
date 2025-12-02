@@ -3,7 +3,7 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
 const Contact = () => {
   return (
-    <div className="bg-[#f1f4f6] text-black min-h-screen py-12 mt-[68px]">
+    <div className="bg-[#f1f4f6] text-black min-h-screen py-12 mt-[60px]">
       <div className="max-w-6xl mx-auto px-6">
        
         <div className="text-center mb-12">
@@ -20,7 +20,7 @@ const Contact = () => {
             <div className="flex items-start gap-3">
               <FaMapMarkerAlt className="text-yellow-500 text-xl mt-1" />
               <p>
-                Muttam ,kalamassery,<br />
+                Muttom ,kalamassery,<br />
                 Kochi, Kerala, India
               </p>
             </div>

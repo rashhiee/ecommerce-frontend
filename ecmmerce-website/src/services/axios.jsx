@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL : 'https://shoeboxee.duckdns.org',
+    baseURL : import.meta.env.VITE_AXIOS_URL,
     withCredentials:true
 })
 

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../../services/axios'
 import { FaArrowLeft } from 'react-icons/fa'
+import toast, { Toaster } from 'react-hot-toast'
 
 
 const AdminProductAdd = () => {
@@ -45,18 +46,18 @@ const AdminProductAdd = () => {
             })
             console.log(response);
             if (!response.data.success) {
-                alert(response.data.messsage)
+                toast.success(response.data.messsage)
             }
             else {
                 if (response.data.success) {
-                    alert(response.data.message)
+                    toast.success(response.data.message)
                     navigate('/admin/products')
                 }
             }
 
         } catch (error) {
             console.error(error);
-            alert(" Failed to add category.");
+            toast.error(" Failed to add category.");
         }
     }
 
@@ -85,6 +86,7 @@ const AdminProductAdd = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 flex justify-center items-center p-6">
+            <Toaster position="top-center" reverseOrder={false} />
             <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-lg border border-gray-200">
                 <div className="flex justify-between items-center mb-8">
                     <button

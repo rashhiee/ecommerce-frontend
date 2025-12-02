@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faCartShopping, faUser } from "@fortawesome/free-solid-svg-icons";
 import api from "../services/axios";
 import { CartContext } from "./ContextCart";
+import toast, { Toaster } from "react-hot-toast";
 
 
 const Navbar = () => {
@@ -76,7 +77,8 @@ const Navbar = () => {
   async function handleLogout() {
     console.log("logoutee");
     const res = await api.post('/logout')
-    alert(res.data.message)
+    toast.success(res.data.message)
+    // alert(res.data.message)
     setAuth(false);
     setCart([])
     localStorage.setItem("isAuth", "false");
@@ -92,13 +94,16 @@ const Navbar = () => {
 
   return (
     <nav className="w-full bg-[#f4f0eae1] text-[#2b333a] px-3 py-3 shadow-md fixed top-0 left-0 z-50">
+       <Toaster position="top-center" reverseOrder={false} />
       <div className="flex items-center justify-between px-5 mx-auto">
 
         <div className="">
-          <Link to="/" className="text-xl  font-bold tracking-wide">
+          <Link to="/" className="text-2xl  font-bold tracking-wide">
             SB
           </Link>
         </div>
+
+
 
 
         <div className="hidden md:flex items-center gap-10 text-md font-medium">
@@ -109,16 +114,13 @@ const Navbar = () => {
 
 
         <div className="flex items-center gap-6  ">
-          {auth ? (
-
-            <button onClick={handleLogout} className="w-[80px] h-[40px] border-2 rounded-lg border-[#2b333a] hover:bg-[#eeecb1] ">logout</button>
-          ) :
-            <button onClick={() => navigate('/login')} className="w-[80px] h-[40px] border-2 rounded-lg border-[#2b333a] hover:bg-[#eeecb1] ">login</button>
-
-
-          }
           <div className="relative">
-            <FontAwesomeIcon onClick={() => navigate('/cart')} icon={faCartShopping} className="text-2xl cursor-pointer hover:text-[#eeecb1] transition-colors" />
+            <img 
+            onClick={() => navigate('/cart')}
+             src="/images/bag.png" 
+            className="w-8 h-8 cursor-pointer hover:text-[#eeecb1] transition-colors" />
+
+
             {count > 0 ? (
 
               <span className="absolute -top-2 left-4 rounded-full bg-red-500 p-0.5 px-2 text-xs text-red-50 font-serif">{count}</span>
@@ -128,6 +130,14 @@ const Navbar = () => {
 
             }
           </div>
+          {auth ? (
+
+            <button onClick={handleLogout} className="w-[80px] h-[40px] border-2 rounded-lg border-[#2b333a] hover:bg-[#eeecb1] ">logout</button>
+          ) :
+            <button onClick={() => navigate('/login')} className="w-[80px] h-[40px] border-2 rounded-lg border-[#2b333a] hover:bg-[#eeecb1] ">login</button>
+
+
+          }
 
           {/* <FontAwesomeIcon icon={faUser} className="text-xl cursor-pointer hover:text-[#eeecb1] transition-colors" /> */}
         </div>

@@ -8,9 +8,11 @@ import { useNavigate } from 'react-router-dom';
 const ShopUser = () => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
-    const [filteredProducts, setFilteredProducts] = useState(null);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(false);
+
     useEffect(() => {
         async function getter() {
             try {
@@ -24,21 +26,35 @@ const ShopUser = () => {
                 setError(true)
                 console.log(error);
 
+            } finally {
+                setLoading(false);
             }
         }
         getter();
 
     }, [])
 
-    const handleSearch = async () => {
-        if (!search.trim()) {
+    useEffect(() => {
+        if (products.length > 0) {
             setFilteredProducts(products);
-            return;
         }
+    }, [products])
 
+    useEffect(() => {
+        const delay = setTimeout(() => {
+            if (search.trim() === "") {
+                setFilteredProducts(products);
+            } else {
+                liveSearch(search);
+            }
+        }, 400);
 
+        return () => clearTimeout(delay);
+    }, [search, products]);
+
+    const liveSearch = async (word) => {
         try {
-            const res = await api.post('/product/search', { word: search });
+            const res = await api.post('/product/search', { word });
             setFilteredProducts(res.data);
         } catch (err) {
             console.error(err);
@@ -46,9 +62,28 @@ const ShopUser = () => {
         }
     };
 
+    // const handleSearch = () => {
+    //     // if (!search.trim()) {
+    //     //     setFilteredProducts(products);
+    //     //     return;
+    //     // }
+
+
+    //     // try {
+    //     //     const res = await api.post('/product/search', { word: search });
+    //     //     setFilteredProducts(res.data);
+    //     // } catch (err) {
+    //     //     console.error(err);
+    //     //     setFilteredProducts([]);
+    //     // }
+    // };
+
+
+
+
 
     return (
-        <div className='pt-[60px]'>
+        <div className='pt-[60px] mb-[100px]'>
 
             <div className="w-full bg-[#eeecdaa4] py-10">
                 <div className="w-full px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
@@ -102,12 +137,12 @@ const ShopUser = () => {
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search..."
                         className="w-full h-full pr-10 outline-none text-gray-700 placeholder-gray-500 text-sm sm:text-base"
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter') handleSearch();
-                        }}
+                    // onKeyDown={(e) => {
+                    //     if (e.key === 'Enter') handleSearch();
+                    // }}
                     />
                     <FaSearch
-                        onClick={handleSearch}
+                        // onClick={handleSearch}
                         className="absolute right-3 text-gray-500 cursor-pointer"
                     />
                 </div>
@@ -123,34 +158,43 @@ const ShopUser = () => {
 
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mx-8">
-                        {(filteredProducts ?? products)?.length > 0 ? (
-                            (filteredProducts ?? products).map((product) => (
-                                <div
-                                    onClick={() => navigate(`/product/${product._id}`)}
-                                    key={product._id}
-                                    className="bg-white rounded-sm shadow-md hover:shadow-xl transition duration-300 overflow-hidden hover:scale-105"
-                                >
-                                    <img
-                                        src={product.imageUrl || `https://shoeboxee.duckdns.org/api/uploads/${product.image}`}
-                                        alt={product.name}
-                                        className={`w-full h-[220px] object-cover ${product.category ==
-                                            "68f76822441ca1795000f0d2" ? "object-bottom" : "object-center"
-                                            }`}
-                                    />
-                                    <div className="p-2 flex flex-col  ">
-                                        <h3 className="text-md font-semibold text-gray-800 truncate">{product.name}</h3>
-                                        {/* <p className="text-gray-500 text-xs mt-1 truncate">{product.description}</p> */}
-                                        <div className="flex items-center justify-between mt-3">
-                                            <p className="text-black font-semibold text-sm">₹{product.price}</p>
+                        {loading ? (
+                            <div className="text-center text-gray-800 text-lg font-medium mt-10">
+                                Loading products...
+                            </div>
+                        ) :
+                            filteredProducts.length > 0 ? (
+                                filteredProducts.map((product) => (
+                                    <div
+                                        onClick={() => navigate(`/product/${product._id}`)}
+                                        key={product._id}
+                                        className="bg-white rounded-sm shadow-md hover:shadow-xl transition duration-300 overflow-hidden hover:scale-105"
+                                    >
+                                        <img
+                                            src={
+                                                product.image
+                                                    ? `${import.meta.env.VITE_IMAGE_URL}${product.image}`
+                                                    : "/images/fallback.png"
+                                            }
+                                            alt={product.name}
+                                            className={`w-full h-[220px] object-cover ${product.category ==
+                                                "68f76822441ca1795000f0d2" ? "object-bottom" : "object-center"
+                                                }`}
+                                        />
+                                        <div className="p-2 flex flex-col  ">
+                                            <h3 className="text-md font-semibold text-gray-800 truncate">{product.name}</h3>
+                                            {/* <p className="text-gray-500 text-xs mt-1 truncate">{product.description}</p> */}
+                                            <div className="flex items-center justify-between mt-3">
+                                                <p className="text-black font-semibold text-sm">₹{product.price}</p>
+                                            </div>
                                         </div>
                                     </div>
+                                ))
+                            ) : (
+                                <div className="text-center  text-gray-800 text-lg font-medium mt-10">
+                                    No products found
                                 </div>
-                            ))
-                        ) : (
-                            <div className="text-center  text-gray-800 text-lg font-medium mt-10">
-                                No products found
-                            </div>
-                        )}
+                            )}
 
                     </div>
 

@@ -1,9 +1,10 @@
-import React from 'react'
+// import React from 'react'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch,  faAngleDown } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSearch,  faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export const AdminNavbar = () => {
@@ -11,14 +12,15 @@ export const AdminNavbar = () => {
     
        async function handleLogout() {
      const res = await api.post('/logout')
-     alert(res.data.message)
+     toast.success(res.data.message)
      navigate('/admin/login')
   }
     return (
         <nav className="w-full bg-[#f1f1f2]  px-6 py-3 flex items-center justify-between shadow-md">
+            <Toaster position="top-center" reverseOrder={false} />
             <div className=" font-mono flex justify-center items-center gap-6 w-[15%] ">
                 <Link to={"/"}>
-                    <h1 className='text-[#00000] text-[30px]'>
+                    <h1 className='text-[#00000] text-2xl'>
                         SB
                     </h1>
                 </Link>

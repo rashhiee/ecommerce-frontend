@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import api from '../../services/axios'
 import { FaMinus, FaPlus, FaTrash } from 'react-icons/fa';
 import { CartContext } from '../../components/ContextCart';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const Cart = () => {
@@ -74,7 +75,7 @@ const Cart = () => {
         console.log("this is checkrout", cart);
 
         if (cart.items?.length === 0) {
-            alert("Cart is empty!");
+            toast.error("Cart is empty!");
         }
 
         try {
@@ -92,7 +93,8 @@ const Cart = () => {
 
     return (
 
-        <div className="min-h-screen mt-[70px] bg-gray-50 py-8">
+        <div className="min-h-screen mt-[60px] bg-gray-50 py-8">
+            <Toaster position="top-center" reverseOrder={false} />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-gray-900">Shopping Cart</h1>
@@ -114,7 +116,7 @@ const Cart = () => {
                                         <div className="flex items-start gap-4">
                                             <div className="flex-shrink-0">
                                                 <img
-                                                    src={`https://shoeboxee.duckdns.org/api/uploads/${item.image || "placeholder.jpg"}`}
+                                                    src={`${import.meta.env.VITE_IMAGE_URL}${item.image || "placeholder.jpg"}`}
                                                     alt={item.productId.name || "Product"}
                                                     className="w-24 h-24 object-cover rounded-md border border-gray-200"
                                                 />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import api from '../../services/axios';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -20,12 +21,14 @@ const AdminOrders = () => {
 
      const  handleSubmit = async (newStatus,id) => {
           const res = await api.put(`/admin/orders/${id}`,{status:newStatus})
+          toast.success('save changes')
           console.log(res.data);
           
      }
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+            <Toaster position="top-center" reverseOrder={false} />
 
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
                 <div>

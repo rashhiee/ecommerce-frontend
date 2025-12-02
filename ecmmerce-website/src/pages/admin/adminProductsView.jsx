@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import api from '../../services/axios'
 import { FaArrowLeft, FaPlus } from 'react-icons/fa'
 import { motion } from "framer-motion";
+import toast, { Toaster } from 'react-hot-toast'
 
 
 
@@ -38,10 +39,10 @@ const AdminProductsView = () => {
       console.log(deleted);
 
       if (deleted.data.success) {
-        alert(deleted.data.message);
+        toast.success(deleted.data.message);
         setRender(true);
       } else {
-        alert(deleted.data.message)
+        toast.error(deleted.data.message)
       }
     } catch (error) {
       console.error(error)
@@ -56,6 +57,7 @@ const AdminProductsView = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
+      <Toaster position="top-center" reverseOrder={false} />
 
       <div className="w-full max-w-6xl flex justify-between items-center mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
@@ -113,7 +115,7 @@ const AdminProductsView = () => {
                     <td className="p-3 border-r">
                       {p.image ? (
                         <img
-                          src={`https://shoeboxee.duckdns.org/api/uploads/${p.image}`}
+                          src={`${import.meta.env.VITE_IMAGE_URL}${p.image}`}
                           alt={p.name}
                           className="w-24 h-24 rounded-lg  shadow-sm"
                         />

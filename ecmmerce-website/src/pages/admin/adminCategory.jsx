@@ -3,6 +3,7 @@ import { FaPlus , FaArrowLeft} from "react-icons/fa";
 import { useState, useEffect } from "react";
 import api from "../../services/axios";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 
 const AdminCategory = () => {
@@ -31,11 +32,13 @@ const AdminCategory = () => {
     console.log(dele);
 
     if (!dele.data.success) {
-      alert(dele.data.message)
+      toast.success(dele.data.message)
+      // alert(dele.data.message)
     }
     else {
       if (dele.data.success) {
-        alert(dele.data.message)
+        toast.success(dele.data.message)
+        // alert()
         setRender(true)
       }
     }
@@ -45,6 +48,7 @@ const AdminCategory = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 p-6 flex flex-col items-center">
 
       {/* Header */}
+       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="w-full max-w-5xl flex justify-between items-center mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800">

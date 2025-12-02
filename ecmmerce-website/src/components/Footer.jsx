@@ -3,70 +3,89 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#f4f0eae1] text-[#484137e1] transition-all duration-500 hover:py-12 py-8 ">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
-       
+    <footer className="bg-[#f4f0eae1] text-[#484137e1] py-10">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        {/* COLUMN 1 — BRAND INFO */}
         <div>
           <h2 className="text-2xl font-bold text-black mb-3">SHOE BOX</h2>
           <p className="text-sm leading-relaxed">
-            Your trusted destination for premium footwear.  
+            Your trusted destination for premium footwear.
             Fast shipping, easy returns, and 24/7 customer care.
           </p>
         </div>
 
-     
-        <div>
-          <h3 className="text-lg font-semibold text-black mb-3">Support</h3>
-          <ul className="space-y-2 text-sm">
-            <li className="hover:text-white transition">FAQ</li>
-            <li className="hover:text-white transition">Shipping & Returns</li>
-            <li className="hover:text-white transition">Privacy Policy</li>
-            <li className="hover:text-white transition">Terms & Conditions</li>
-          </ul>
-        </div>
+        {/* COLUMN 2 — RESOURCES + HELP */}
+        <div className="grid grid-cols-2 gap-10">
 
-      
-        <div>
-          <h3 className="text-lg font-semibold text-black mb-3">Newsletter</h3>
-          <p className="text-sm mb-3">
-            Stay updated with new arrivals and exclusive offers.
-          </p>
-          <div className="flex">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full px-3 py-2 rounded-l-md text-gray-900 focus:outline-none"
-            />
-            <button className="bg-[#eab308] text-black px-4 py-2 rounded-r-md hover:bg-yellow-500 transition">
-              Subscribe
-            </button>
+          {/* Resources */}
+          <div>
+            <h3 className="text-lg font-semibold text-black mb-3">Resources</h3>
+            <ul className="space-y-2 text-sm">
+              <li className="hover:text-black cursor-pointer">Find A Store</li>
+              <li className="hover:text-black cursor-pointer">Become A Member</li>
+              <li className="hover:text-black cursor-pointer">Running Shoe Finder</li>
+              <li className="hover:text-black cursor-pointer">Product Advice</li>
+              <li className="hover:text-black cursor-pointer">Nike Coaching</li>
+              <li className="hover:text-black cursor-pointer">Send Us Feedback</li>
+            </ul>
           </div>
+
+          {/* Help */}
+          <div>
+            <h3 className="text-lg font-semibold text-black mb-3">Help</h3>
+            <ul className="space-y-2 text-sm">
+              <li className="hover:text-black cursor-pointer">Get Help</li>
+              <li className="hover:text-black cursor-pointer">Order Status</li>
+              <li className="hover:text-black cursor-pointer">Delivery</li>
+              <li className="hover:text-black cursor-pointer">Returns</li>
+              <li className="hover:text-black cursor-pointer">Payment Options</li>
+              <li className="hover:text-black cursor-pointer">Contact Us On Nike.com Inquiries</li>
+              <li className="hover:text-black cursor-pointer">Contact Us On All Other Inquiries</li>
+            </ul>
+          </div>
+
         </div>
 
-        
-        <div>
-          <h3 className="text-lg font-semibold text-black mb-3">Contact</h3>
-          <ul className="space-y-2 text-sm">
-            <li className="flex items-center gap-2">
-              <FaEnvelope className="text-yellow-500" /> rashiee973@gmail.com
-            </li>
-            <li className="flex items-center gap-2">
-              <FaPhone className="text-yellow-500" /> +91 9048543681
-            </li>
-            <li className="flex items-start gap-2">
-              <FaMapMarkerAlt className="text-yellow-500 mt-1" /> 
-              <span>
-                 kalamassery , Kochi,<br /> Kerala, India
-              </span>
-            </li>
-          </ul>
+        {/* COLUMN 3 — COMPANY + GUIDES */}
+        <div className="grid grid-cols-2 gap-10">
+
+          {/* Company */}
+          <div>
+            <h3 className="text-lg font-semibold text-black mb-3">Company</h3>
+            <ul className="space-y-2 text-sm">
+              <li className="hover:text-black cursor-pointer">About Nike</li>
+              <li className="hover:text-black cursor-pointer">News</li>
+              <li className="hover:text-black cursor-pointer">Careers</li>
+              <li className="hover:text-black cursor-pointer">Investors</li>
+              <li className="hover:text-black cursor-pointer">Sustainability</li>
+              <li className="hover:text-black cursor-pointer">Impact</li>
+              <li className="hover:text-black cursor-pointer">Report a Concern</li>
+            </ul>
+          </div>
+
+          {/* Guides */}
+          <div>
+            <h3 className="text-lg font-semibold text-black mb-3">Guides</h3>
+            <ul className="space-y-2 text-sm">
+              <li className="hover:text-black cursor-pointer">Terms of Sale</li>
+              <li className="hover:text-black cursor-pointer">Terms of Use</li>
+              <li className="hover:text-black cursor-pointer">Nike Privacy Policy</li>
+              <li className="hover:text-black cursor-pointer">Privacy Settings</li>
+            </ul>
+          </div>
+
         </div>
+
       </div>
 
-      <div className="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} SHOE BOX. All Rights Reserved.
+      {/* BOTTOM LINE */}
+      <div className="mt-10 pt-5 border-t border-gray-400 text-center text-sm text-gray-600">
+        India <br />
+        © {new Date().getFullYear()} SHOE BOX. All Rights Reserved.
       </div>
     </footer>
+
   );
 };
 

@@ -3,6 +3,7 @@ import { FaArrowLeft } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import api from '../../services/axios'
+import toast, { Toaster } from 'react-hot-toast'
 // import { FaArrowLeft } from 'react-icons/fa'
 
 
@@ -88,11 +89,11 @@ const AdminProductEdit = () => {
       });
 
       if (detail.data.success) {
-        alert(detail.data.message)
+        toast.success(detail.data.message)
         navigate('/admin/products')
       } else {
 
-        alert(detail.data.message)
+        toast.error(detail.data.message)
 
       }
 
@@ -107,6 +108,7 @@ const AdminProductEdit = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 flex justify-center items-center p-6">
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-lg border border-gray-200">
         <div className="flex justify-between items-center mb-8">
           <button
@@ -218,7 +220,7 @@ const AdminProductEdit = () => {
                 src={
                   preview.startsWith('blob')
                     ? preview
-                    : `https://shoeboxee.duckdns.org/api/${preview.startsWith('/uploads/') ? preview : '/uploads/' + preview}`
+                    : `import/${preview.startsWith('/uploads/') ? preview : '/uploads/' + preview}`
                 }
 
                 alt="preview"

@@ -14,6 +14,7 @@ const DashboardCard = ({ icon: Icon, title, path }) => {
                  hover:scale-[1.03] hover:shadow-xl transition-all duration-300 cursor-pointer
                  transform hover:-translate-y-1 w-full sm:w-auto"
     >
+      
       <div className="bg-blue-100 text-blue-600 p-3 rounded-full">
         <Icon size={26} />
       </div>

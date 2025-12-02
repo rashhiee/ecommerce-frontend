@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../../services/axios'
 import { FaArrowLeft, FaPlus } from 'react-icons/fa'
+import toast, { Toaster } from 'react-hot-toast'
 
 
 const AdminCategoyAdd = () => {
@@ -27,16 +28,17 @@ const AdminCategoyAdd = () => {
             const responce = await api.post('/admin/category', form)
             console.log(responce);
 
-            alert("category added success");
+            toast.success("category added success");
             navigate('/admin/category')
         } catch (error) {
             console.error("Error adding category:", error);
-            alert(" Failed to add category.");
+            toast.error(" Failed to add category.");
         }
     }
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100 p-6">
+            <Toaster position="top-center" reverseOrder={false} />
             <div className="bg-white/80 backdrop-blur-md shadow-2xl rounded-2xl p-8 w-full max-w-lg">
          
                 <div className="flex justify-between items-center mb-8">
